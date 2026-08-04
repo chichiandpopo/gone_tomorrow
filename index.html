@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>곤투모로우 출연 일정 - 전체 배우</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Song+Myung&family=Nanum+Myeongjo:ital,wght@0,400;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans KR',sans-serif;
+  background:
+    radial-gradient(ellipse 100% 45% at 50% 0%, rgba(194,59,74,0.06), transparent 60%),
+    linear-gradient(180deg,#eeece7 0%,#dcd9d1 18%,#d6d2c8 32%,#e2ddd0 50%,#ece6d6 70%,#f2ecdd 100%);
+  background-color:#eeece7;
+  min-height:100vh;padding:0 0 50px;color:#2a2420;}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:36px 16px 26px;text-align:center;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 18% 20%,rgba(255,255,255,0.5),transparent 42%),
+             radial-gradient(circle at 82% 70%,rgba(120,115,105,0.12),transparent 48%);
+  pointer-events:none;}
+.hero-inner{position:relative;z-index:1;}
+.presents{font-size:10px;letter-spacing:5px;color:#7a7266;font-weight:700;margin-bottom:14px;}
+.brush-title{font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:44px;line-height:0.95;
+  color:#8f1f2c;letter-spacing:-1px;text-shadow:0 2px 14px rgba(143,31,44,0.18);
+  transform:skewX(-3deg);margin-bottom:6px;}
+.title-en{font-family:'Nanum Myeongjo',serif;font-style:italic;font-weight:400;font-size:12px;
+  letter-spacing:2px;color:#6b6358;margin-bottom:16px;}
+.title-kr{font-family:'Song Myung',serif;font-size:32px;color:#2a2420;letter-spacing:6px;margin-bottom:2px;}
+.title-sub{font-size:11px;color:#6b6358;letter-spacing:3px;margin-bottom:14px;}
+.hero-meta{font-size:11.5px;color:#4a4438;letter-spacing:0.5px;margin-bottom:14px;line-height:1.8;}
+.hero-meta b{color:#8f1f2c;font-weight:700;}
+.ticket-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+.ticket-btn{display:inline-block;padding:6px 14px;background:rgba(255,255,255,0.65);
+  border:1px solid rgba(143,31,44,0.4);border-radius:20px;font-size:11px;font-weight:700;
+  color:#8f1f2c;text-decoration:none;letter-spacing:0.5px;}
+.info-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.info-btn{display:inline-block;padding:5px 12px;background:rgba(255,255,255,0.5);
+  border:1px solid rgba(60,55,48,0.2);border-radius:20px;font-size:10.5px;font-weight:500;
+  color:#4a4438;text-decoration:none;}
+
+/* ---------- content wrap ---------- */
+.content{max-width:720px;margin:0 auto;padding:16px 10px 0;}
+.section-title{text-align:center;font-size:17px;font-weight:700;color:#2a2420;margin:20px 0 10px;
+  letter-spacing:3px;font-family:'Song Myung',serif;}
+.section-title .en{display:block;font-family:'Noto Sans KR',sans-serif;font-size:9px;
+  letter-spacing:3px;color:#8a7d6c;font-weight:500;margin-top:2px;}
+
+.card{max-width:720px;margin:0 auto 16px;background:rgba(255,255,255,0.72);
+  border-radius:18px;border:1px solid rgba(60,55,48,0.14);padding:16px 14px;}
+
+/* ---------- pin bar ---------- */
+.pin-bar{max-width:720px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;
+  gap:8px;flex-wrap:wrap;min-height:26px;padding:0 10px;}
+.pin-btn{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;
+  border:2px solid transparent;font-family:'Noto Sans KR',sans-serif;transition:all 0.15s;}
+.pin-btn-set{background:#8f1f2c;color:white;border-color:#8f1f2c;}
+.pin-btn-set:hover{background:#761925;border-color:#761925;}
+.pin-btn-clear{background:rgba(255,255,255,0.8);border-color:rgba(60,55,48,0.25)!important;color:#8f1f2c;}
+.pin-status{font-size:11px;font-weight:700;color:#8f1f2c;display:flex;align-items:center;gap:5px;}
+.pin-dot{width:8px;height:8px;border-radius:50%;background:#8f1f2c;display:inline-block;animation:pblink 1.4s infinite;}
+@keyframes pblink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.fb2.pinned{outline:3px solid #8f1f2c;outline-offset:1px;}
+.pin-hint{font-size:11px;color:#6b6358;}
+
+/* ---------- filters ---------- */
+.filter-section{max-width:720px;margin:0 auto 4px;padding:0 10px;}
+.filter-group{margin-bottom:8px;}
+.fgl{font-size:10.5px;font-weight:700;color:#6b6358;text-align:center;letter-spacing:2px;margin-bottom:4px;}
+.filter-row{display:flex;justify-content:center;gap:5px;flex-wrap:wrap;}
+.fb2{padding:5px 11px;border-radius:18px;font-size:11px;font-weight:700;cursor:pointer;
+  border:2px solid transparent;transition:all 0.12s;font-family:'Noto Sans KR',sans-serif;white-space:nowrap;}
+.btn-all{background:rgba(255,255,255,0.7);color:#2a2420;border-color:rgba(60,55,48,0.25);}
+.btn-all.active{background:#8f1f2c;color:white;border-color:#8f1f2c;}
+
+.count-info{text-align:center;font-size:12px;color:#4a4438;margin-bottom:10px;font-weight:500;}
+
+/* ---------- table (grid, compact) ---------- */
+.table-wrap{max-width:720px;margin:0 auto;background:rgba(255,255,255,0.82);border-radius:16px;
+  overflow:hidden;border:1px solid rgba(60,55,48,0.16);}
+.week-divider{padding:6px 8px;background:rgba(143,31,44,0.14);font-size:11px;font-weight:700;
+  color:#8f1f2c;text-align:center;letter-spacing:2px;border-top:1px solid rgba(143,31,44,0.2);}
+.table-wrap>.week-divider:first-child{border-top:none;}
+.no-show{padding:5px 8px;background:rgba(0,0,0,0.03);font-size:10px;color:#8a7d6c;text-align:center;
+  border-top:1px solid rgba(60,55,48,0.08);font-style:italic;}
+.row{display:grid;grid-template-columns:46px 15px 30px 1fr 1fr 0.82fr 0.82fr 0.82fr 56px 20px;
+  padding:5px 4px;gap:2px;border-top:1px solid rgba(60,55,48,0.1);align-items:start;}
+.row.hidden{display:none;}
+.cell{font-size:9px;color:#2a2420;text-align:center;}
+.cell.date{font-weight:700;font-size:9.5px;text-align:left;line-height:1.3;}
+.cell.day{font-weight:700;font-size:9.5px;}
+.cell.day.day-sat{color:#1a5a9a;}
+.cell.day.day-sun{color:#a01818;}
+.cell.day.day-wkd{color:#6a5f50;}
+.cell.time{font-size:8.5px;color:#6b6358;}
+.cell.actor-cell{font-size:9px;font-weight:600;line-height:1.25;padding-top:1px;}
+.role-pill{font-size:8.5px;font-weight:700;padding:1px 3px;border-radius:5px;display:inline-block;line-height:1.35;white-space:nowrap;}
+.event-tag{display:block;font-size:7.5px;font-weight:700;color:#8f1f2c;opacity:0.85;margin-top:1px;white-space:nowrap;text-decoration:none;}
+.event-tag:hover{opacity:1;text-decoration:underline;}
+.fb{display:inline-block;background:#8f1f2c;color:white;font-size:6px;font-weight:700;
+  padding:0 2px;border-radius:5px;margin-left:1px;vertical-align:middle;}
+.fb.fb-last{background:#555;}
+.copy-btn{background:none;border:none;cursor:pointer;font-size:13px;padding:1px;display:flex;
+  align-items:center;justify-content:center;width:100%;transition:all 0.15s;margin-top:1px;}
+.copy-btn.copied{filter:brightness(1.3);}
+.cell.copy-cell{display:flex;align-items:center;justify-content:center;}
+.seat-cell{display:flex;flex-direction:column;gap:2px;}
+.seat-input-row{display:flex;gap:2px;}
+.seat-input{flex:1;min-width:0;font-size:8.5px;padding:2px 3px;border:1px solid rgba(60,55,48,0.25);
+  border-radius:5px;background:rgba(255,255,255,0.8);color:#2a2420;font-family:'Noto Sans KR',sans-serif;
+  text-align:center;}
+.seat-input:focus{outline:none;border-color:#8f1f2c;background:white;}
+.seat-ok-btn{flex-shrink:0;background:#8f1f2c;color:white;border:none;border-radius:5px;
+  font-size:9px;font-weight:700;padding:2px 5px;cursor:pointer;font-family:inherit;}
+.seat-tags{display:flex;flex-wrap:wrap;gap:1px;justify-content:center;}
+.seat-tag{font-size:9px;font-weight:700;padding:2px 5px;border-radius:6px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:2px;color:white;}
+
+/* ---------- counting ---------- */
+.settle-title{text-align:center;font-size:15px;font-weight:700;color:#2a2420;letter-spacing:2px;
+  margin:22px 0 8px;font-family:'Song Myung',serif;}
+.counting-section{max-width:720px;margin:0 auto;padding:0 10px;}
+.cgl{font-size:10.5px;font-weight:700;color:#6b6358;text-align:center;letter-spacing:2px;margin:6px 0 3px;}
+.counting-box{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:2px;}
+.count-card{flex:1;min-width:60px;max-width:95px;background:rgba(255,255,255,0.75);border-radius:10px;
+  padding:6px 3px;text-align:center;border:1px solid rgba(60,55,48,0.14);}
+.count-card .cnt-name{font-size:11px;font-weight:700;margin-bottom:2px;}
+.count-card .cnt-num{font-size:19px;font-weight:700;line-height:1;}
+.count-card .cnt-label{font-size:8px;color:#8a7d6c;}
+.cnt-total-box{display:flex;justify-content:center;margin:6px 0;}
+.cnt-total-card{background:rgba(143,31,44,0.1);border-radius:14px;padding:7px 26px;text-align:center;
+  border:1px solid rgba(143,31,44,0.3);}
+.cnt-total-card .cnt-name{font-size:11px;font-weight:700;color:#8f1f2c;margin-bottom:1px;}
+.cnt-total-card .cnt-num{font-size:27px;font-weight:700;color:#8f1f2c;line-height:1;}
+.cnt-total-card .cnt-label{font-size:10px;color:#6b6358;}
+.cnt-total-of{font-size:0.55em;font-weight:500;color:#999;margin-left:1px;}
+
+/* ---------- seat map ---------- */
+.seat-map-section{max-width:720px;margin:14px auto 0;background:rgba(255,255,255,0.78);
+  border-radius:16px;padding:14px 8px 16px;border:1px solid rgba(60,55,48,0.16);}
+.seat-map-title{text-align:center;font-size:13px;font-weight:700;color:#8f1f2c;margin-bottom:8px;
+  letter-spacing:1px;}
+.stage-box{background:#2a2420;color:#e8ded0;border-radius:6px;text-align:center;font-size:11px;
+  font-weight:700;padding:5px 0;letter-spacing:3px;margin-bottom:10px;width:100%;}
+.floor-block{margin-bottom:22px;}
+.floor-block:last-child{margin-bottom:0;}
+.floor-title{text-align:center;font-size:12px;font-weight:700;color:#2a2420;background:rgba(143,31,44,0.1);
+  border-radius:8px;padding:4px 0;margin-bottom:8px;letter-spacing:2px;}
+.stage-box-mini{background:#2a2420;color:#e8ded0;border-radius:6px;text-align:center;font-size:9.5px;
+  font-weight:700;padding:4px 0;letter-spacing:3px;margin-bottom:10px;width:100%;}
+.op-wrap{display:flex;justify-content:center;margin-bottom:12px;}
+.zone-scroll{overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+.zone-row{display:inline-flex;gap:16px;padding:0 6px;margin:0 auto;justify-content:center;min-width:100%;}
+.zone-block{flex-shrink:0;}
+.zone-label{font-size:9.5px;font-weight:700;color:#6b6358;text-align:center;margin-bottom:3px;
+  letter-spacing:1px;white-space:nowrap;}
+.zone-rows{display:flex;flex-direction:column;gap:1px;align-items:center;}
+.seat-row{display:flex;align-items:center;gap:1px;}
+.row-label{font-size:6px;font-weight:700;color:#8a7d6c;flex-shrink:0;text-align:center;width:9px;}
+.seat-gap{width:10px;height:10px;flex-shrink:0;}
+.seat{width:10px;height:10px;font-size:5.5px;border-radius:2px;font-weight:700;display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;
+  background:#eae5d8;color:#b0a284;border:1px solid #d8cdb8;}
+.seat.mk1{background:#8f1f2c!important;color:white!important;border-color:#6b1620!important;}
+.seat.mk2{background:#3a72c2!important;color:white!important;border-color:#204d8f!important;}
+.seat.mk3{background:#d98a2e!important;color:white!important;border-color:#a4671c!important;}
+.seat.mk4{background:#7a4ec2!important;color:white!important;border-color:#54338f!important;}
+.seat.mk5{background:#3ea15f!important;color:white!important;border-color:#25703f!important;}
+.seat-legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:12px;font-size:11px;}
+.seat-legend-item{display:flex;align-items:center;gap:4px;color:#2a2420;}
+.seat-legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block;}
+
+.footer{text-align:center;font-size:10px;color:#6b6358;margin-top:16px;line-height:1.8;padding:0 20px;}
+.footer b{color:#8f1f2c;}
+
+@media(min-width:768px){
+  .brush-title{font-size:58px;}
+  .title-kr{font-size:44px;letter-spacing:8px;}
+  .fb2{font-size:12px;padding:6px 15px;}
+  .fgl,.cgl{font-size:12px;}
+  .row{grid-template-columns:70px 22px 40px 1fr 1fr 0.85fr 0.85fr 0.85fr 96px 26px;padding:8px 10px;gap:4px;}
+  .cell{font-size:11.5px;}.cell.date{font-size:12px;}.cell.time{font-size:10.5px;}
+  .role-pill{font-size:11.5px;padding:2px 6px;}
+  .cell.actor-cell{font-size:11.5px;}
+  .fb{font-size:8px;padding:1px 4px;}
+  .seat-input{font-size:10.5px;padding:3px 5px;}
+  .count-card .cnt-name{font-size:11.5px;}.count-card .cnt-num{font-size:24px;}
+  .cnt-total-card .cnt-num{font-size:34px;}
+  .seat{width:15px;height:15px;font-size:8px;}
+  .seat-gap{width:15px;height:15px;}
+  .row-label{width:13px;font-size:8px;}
+  .zone-label{font-size:11.5px;}
+  .zone-row{gap:22px;}
+}
+
+.btn-kangpilseok{background:#f3dedc;color:#7b261d;border-color:#d29892;}.btn-kangpilseok.active{background:#8e3329;color:#fff;border-color:#8e3329;}
+.btn-choijaewoong{background:#f3e5dc;color:#7b431d;border-color:#d2ac92;}.btn-choijaewoong.active{background:#8e5129;color:#fff;border-color:#8e5129;}
+.btn-kimkyungsoo{background:#f3ecdc;color:#7b5f1d;border-color:#d2bf92;}.btn-kimkyungsoo.active{background:#8e6f29;color:#fff;border-color:#8e6f29;}
+.btn-songwongeun{background:#f3f3dc;color:#7b7b1d;border-color:#d2d292;}.btn-songwongeun.active{background:#8e8e29;color:#fff;border-color:#8e8e29;}
+.btn-gohoonjeong{background:#ecf3dc;color:#5f7b1d;border-color:#bfd292;}.btn-gohoonjeong.active{background:#6f8e29;color:#fff;border-color:#6f8e29;}
+.btn-sondongwoon{background:#e5f3dc;color:#437b1d;border-color:#acd292;}.btn-sondongwoon.active{background:#518e29;color:#fff;border-color:#518e29;}
+.btn-kimjaebeom{background:#def3dc;color:#267b1d;border-color:#98d292;}.btn-kimjaebeom.active{background:#338e29;color:#fff;border-color:#338e29;}
+.btn-shinsungmin{background:#dcf3e1;color:#1d7b30;border-color:#92d29f;}.btn-shinsungmin.active{background:#298e3d;color:#fff;border-color:#298e3d;}
+.btn-baekhyunghoon{background:#dcf3e8;color:#1d7b4c;border-color:#92d2b2;}.btn-baekhyunghoon.active{background:#298e5b;color:#fff;border-color:#298e5b;}
+.btn-yoonsoho{background:#dcf3ee;color:#1d7b68;border-color:#92d2c5;}.btn-yoonsoho.active{background:#298e7a;color:#fff;border-color:#298e7a;}
+.btn-wontaemin{background:#dcf1f3;color:#1d727b;border-color:#92ccd2;}.btn-wontaemin.active{background:#29848e;color:#fff;border-color:#29848e;}
+.btn-munyoogang{background:#dceaf3;color:#1d557b;border-color:#92b8d2;}.btn-munyoogang.active{background:#29658e;color:#fff;border-color:#29658e;}
+.btn-goyoungbin{background:#dce3f3;color:#1d397b;border-color:#92a5d2;}.btn-goyoungbin.active{background:#29478e;color:#fff;border-color:#29478e;}
+.btn-parkyoungsoo{background:#dcdcf3;color:#1d1d7b;border-color:#9292d2;}.btn-parkyoungsoo.active{background:#29298e;color:#fff;border-color:#29298e;}
+.btn-kimjoonsoo{background:#e3dcf3;color:#391d7b;border-color:#a592d2;}.btn-kimjoonsoo.active{background:#47298e;color:#fff;border-color:#47298e;}
+.btn-kimtaehan{background:#eadcf3;color:#551d7b;border-color:#b892d2;}.btn-kimtaehan.active{background:#65298e;color:#fff;border-color:#65298e;}
+.btn-jihyunjun_wan{background:#f1dcf3;color:#721d7b;border-color:#cc92d2;}.btn-jihyunjun_wan.active{background:#84298e;color:#fff;border-color:#84298e;}
+.btn-shinjaehee{background:#f3dcee;color:#7b1d68;border-color:#d292c5;}.btn-shinjaehee.active{background:#8e297a;color:#fff;border-color:#8e297a;}
+.btn-jihyunjun_wada{background:#f3dce8;color:#7b1d4c;border-color:#d292b2;}.btn-jihyunjun_wada.active{background:#8e295b;color:#fff;border-color:#8e295b;}
+.btn-shinhyunjun{background:#f3dce1;color:#7b1d30;border-color:#d2929f;}.btn-shinhyunjun.active{background:#8e293d;color:#fff;border-color:#8e293d;}
+.badge-kangpilseok{background:#f3dedc;color:#7b261d;}
+.badge-choijaewoong{background:#f3e5dc;color:#7b431d;}
+.badge-kimkyungsoo{background:#f3ecdc;color:#7b5f1d;}
+.badge-songwongeun{background:#f3f3dc;color:#7b7b1d;}
+.badge-gohoonjeong{background:#ecf3dc;color:#5f7b1d;}
+.badge-sondongwoon{background:#e5f3dc;color:#437b1d;}
+.badge-kimjaebeom{background:#def3dc;color:#267b1d;}
+.badge-shinsungmin{background:#dcf3e1;color:#1d7b30;}
+.badge-baekhyunghoon{background:#dcf3e8;color:#1d7b4c;}
+.badge-yoonsoho{background:#dcf3ee;color:#1d7b68;}
+.badge-wontaemin{background:#dcf1f3;color:#1d727b;}
+.badge-munyoogang{background:#dceaf3;color:#1d557b;}
+.badge-goyoungbin{background:#dce3f3;color:#1d397b;}
+.badge-parkyoungsoo{background:#dcdcf3;color:#1d1d7b;}
+.badge-kimjoonsoo{background:#e3dcf3;color:#391d7b;}
+.badge-kimtaehan{background:#eadcf3;color:#551d7b;}
+.badge-jihyunjun_wan{background:#f1dcf3;color:#721d7b;}
+.badge-shinjaehee{background:#f3dcee;color:#7b1d68;}
+.badge-jihyunjun_wada{background:#f3dce8;color:#7b1d4c;}
+.badge-shinhyunjun{background:#f3dce1;color:#7b1d30;}
+.row.ok-kangpilseok{background:#f8e8e7;}
+.row.ok-choijaewoong{background:#f8eee7;}
+.row.ok-kimkyungsoo{background:#f8f3e7;}
+.row.ok-songwongeun{background:#f8f8e7;}
+.row.ok-gohoonjeong{background:#f3f8e7;}
+.row.ok-sondongwoon{background:#eef8e7;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="presents">MUSICAL</div>
+    <div class="brush-title">Gone Tomorrow</div>
+    <div class="title-en">세 발의 총성, 사라진 내일 · 갈 수 없는 나라</div>
+    <div class="title-kr">곤투모로우</div>
+    <div class="title-sub">삼일천하 1884</div>
+    <div class="hero-meta">
+      <b>2026.09.15 – 11.29</b><br>
+      홍익대 대학로아트센터 대극장
+    </div>
+    <div class="ticket-row">
+      <a href="https://ticket.yes24.com/" target="_blank" class="ticket-btn">🎟 예스24</a>
+      <a href="https://www.ticketlink.co.kr/" target="_blank" class="ticket-btn">🎟 티켓링크</a>
+      <a href="https://tickets.interpark.com/" target="_blank" class="ticket-btn">🎟 NOL티켓</a>
+    </div>
+    <div class="info-row">
+      <a href="#" class="info-btn">🪑 좌석 배치도</a>
+      <a href="#" class="info-btn">🔍 시야 확인</a>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+<div class="section-title">출연 일정<span class="en">CAST SCHEDULE</span></div>
+
+<div class="pin-bar" id="pinBar">
+  <span class="pin-hint">배우를 선택하고 📌 고정하면 다음 접속 때도 유지돼요</span>
+</div>
+
+<div class="filter-section">
+  <div class="filter-group">
+    <div class="fgl">전체</div>
+    <div class="filter-row">
+      <button class="fb2 btn-all active" onclick="resetFilter()">전체 보기</button>
+    </div>
+  </div>
+  <div class="filter-group">
+    <div class="fgl">김옥균</div>
+    <div class="filter-row">
+      <button class="fb2 btn-kangpilseok" onclick="toggleFilter('ok','kangpilseok')">강필석</button><button class="fb2 btn-choijaewoong" onclick="toggleFilter('ok','choijaewoong')">최재웅</button><button class="fb2 btn-kimkyungsoo" onclick="toggleFilter('ok','kimkyungsoo')">김경수</button><button class="fb2 btn-songwongeun" onclick="toggleFilter('ok','songwongeun')">송원근</button><button class="fb2 btn-gohoonjeong" onclick="toggleFilter('ok','gohoonjeong')">고훈정</button><button class="fb2 btn-sondongwoon" onclick="toggleFilter('ok','sondongwoon')">손동운</button>
+    </div>
+  </div>
+<div class="filter-group">
+    <div class="fgl">한정훈</div>
+    <div class="filter-row">
+      <button class="fb2 btn-kimjaebeom" onclick="toggleFilter('han','kimjaebeom')">김재범</button><button class="fb2 btn-shinsungmin" onclick="toggleFilter('han','shinsungmin')">신성민</button><button class="fb2 btn-baekhyunghoon" onclick="toggleFilter('han','baekhyunghoon')">백형훈</button><button class="fb2 btn-yoonsoho" onclick="toggleFilter('han','yoonsoho')">윤소호</button><button class="fb2 btn-wontaemin" onclick="toggleFilter('han','wontaemin')">원태민</button><button class="fb2 btn-munyoogang" onclick="toggleFilter('han','munyoogang')">문유강</button>
+    </div>
+  </div>
+<div class="filter-group">
+    <div class="fgl">고종</div>
+    <div class="filter-row">
+      <button class="fb2 btn-goyoungbin" onclick="toggleFilter('go','goyoungbin')">고영빈</button><button class="fb2 btn-parkyoungsoo" onclick="toggleFilter('go','parkyoungsoo')">박영수</button><button class="fb2 btn-kimjoonsoo" onclick="toggleFilter('go','kimjoonsoo')">김준수</button>
+    </div>
+  </div>
+<div class="filter-group">
+    <div class="fgl">이완</div>
+    <div class="filter-row">
+      <button class="fb2 btn-kimtaehan" onclick="toggleFilter('wan','kimtaehan')">김태한</button><button class="fb2 btn-jihyunjun_wan" onclick="toggleFilter('wan','jihyunjun_wan')">지현준</button><button class="fb2 btn-shinjaehee" onclick="toggleFilter('wan','shinjaehee')">신재희</button>
+    </div>
+  </div>
+<div class="filter-group">
+    <div class="fgl">와다</div>
+    <div class="filter-row">
+      <button class="fb2 btn-jihyunjun_wada" onclick="toggleFilter('wada','jihyunjun_wada')">지현준</button><button class="fb2 btn-shinhyunjun" onclick="toggleFilter('wada','shinhyunjun')">신현준</button>
+    </div>
+  </div>
+</div>
+
+<div class="count-info" id="countInfo">전체 26회</div>
+
+<div class="table-wrap">
+<div class="table-header" style="display:grid;grid-template-columns:46px 15px 30px 1fr 1fr 0.82fr 0.82fr 0.82fr 56px 20px;background:rgba(143,31,44,0.08);padding:6px 4px;gap:2px;align-items:center;">
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">날짜</div>
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">요일</div>
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">시간</div>
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">김옥균</div>
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">한정훈</div>
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">고종</div>
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">이완</div>
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">와다</div>
+  <div class="th" style="font-size:8.5px;font-weight:700;color:#8f1f2c;text-align:center;">좌석</div>
+  <div class="th"></div>
+</div>
+<div class="row ok-kangpilseok" data-sid="s1" data-ok="kangpilseok" data-han="kimjaebeom" data-go="parkyoungsoo" data-wan="kimtaehan" data-wada="jihyunjun_wada"><div class="cell date">9월 15일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">오프닝위크</a><a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">첫공무대인사</a></div><div class="cell day day-wkd">화</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석<span class="fb">첫</span></span></div><div class="cell actor-cell">김재범<span class="fb">첫</span></div><div class="cell actor-cell">박영수<span class="fb">첫</span></div><div class="cell actor-cell">김태한<span class="fb">첫</span></div><div class="cell actor-cell">지현준<span class="fb">첫</span></div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s1" placeholder="1F-A-1-4"><button onclick="confirmSeat('s1')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s1"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s1')" title="복사">🔫</button></div></div>
+<div class="row ok-choijaewoong" data-sid="s2" data-ok="choijaewoong" data-han="baekhyunghoon" data-go="kimjoonsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">9월 16일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">오프닝위크</a><a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">첫공무대인사</a></div><div class="cell day day-wkd">수</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-choijaewoong">최재웅<span class="fb">첫</span></span></div><div class="cell actor-cell">백형훈<span class="fb">첫</span></div><div class="cell actor-cell">김준수<span class="fb">첫</span></div><div class="cell actor-cell">지현준<span class="fb">첫</span></div><div class="cell actor-cell">신현준<span class="fb">첫</span></div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s2" placeholder="1F-A-1-4"><button onclick="confirmSeat('s2')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s2"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s2')" title="복사">🔫</button></div></div>
+<div class="row ok-kimkyungsoo" data-sid="s3" data-ok="kimkyungsoo" data-han="munyoogang" data-go="goyoungbin" data-wan="shinjaehee" data-wada="jihyunjun_wada"><div class="cell date">9월 17일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">오프닝위크</a><a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">첫공무대인사</a></div><div class="cell day day-wkd">목</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-kimkyungsoo">김경수<span class="fb">첫</span></span></div><div class="cell actor-cell">문유강<span class="fb">첫</span></div><div class="cell actor-cell">고영빈<span class="fb">첫</span></div><div class="cell actor-cell">신재희<span class="fb">첫</span></div><div class="cell actor-cell">지현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s3" placeholder="1F-A-1-4"><button onclick="confirmSeat('s3')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s3"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s3')" title="복사">🔫</button></div></div>
+<div class="row ok-songwongeun" data-sid="s4" data-ok="songwongeun" data-han="yoonsoho" data-go="parkyoungsoo" data-wan="kimtaehan" data-wada="shinhyunjun"><div class="cell date">9월 18일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">오프닝위크</a><a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">첫공무대인사</a></div><div class="cell day day-wkd">금</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-songwongeun">송원근<span class="fb">첫</span></span></div><div class="cell actor-cell">윤소호<span class="fb">첫</span></div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s4" placeholder="1F-A-1-4"><button onclick="confirmSeat('s4')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s4"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s4')" title="복사">🔫</button></div></div>
+<div class="row ok-sondongwoon" data-sid="s5" data-ok="sondongwoon" data-han="wontaemin" data-go="goyoungbin" data-wan="shinjaehee" data-wada="shinhyunjun"><div class="cell date">9월 19일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">오프닝위크</a><a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">첫공무대인사</a></div><div class="cell day day-sat">토</div><div class="cell time">15:00</div><div class="cell"><span class="role-pill badge-sondongwoon">손동운<span class="fb">첫</span></span></div><div class="cell actor-cell">원태민<span class="fb">첫</span></div><div class="cell actor-cell">고영빈</div><div class="cell actor-cell">신재희</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s5" placeholder="1F-A-1-4"><button onclick="confirmSeat('s5')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s5"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s5')" title="복사">🔫</button></div></div>
+<div class="row ok-kangpilseok" data-sid="s6" data-ok="kangpilseok" data-han="yoonsoho" data-go="goyoungbin" data-wan="kimtaehan" data-wada="jihyunjun_wada"><div class="cell date">9월 19일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">오프닝위크</a><a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">첫공무대인사</a></div><div class="cell day day-sat">토</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">윤소호</div><div class="cell actor-cell">고영빈</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">지현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s6" placeholder="1F-A-1-4"><button onclick="confirmSeat('s6')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s6"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s6')" title="복사">🔫</button></div></div>
+<div class="row ok-choijaewoong" data-sid="s7" data-ok="choijaewoong" data-han="yoonsoho" data-go="parkyoungsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">9월 20일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">오프닝위크</a></div><div class="cell day day-sun">일</div><div class="cell time">14:00</div><div class="cell"><span class="role-pill badge-choijaewoong">최재웅</span></div><div class="cell actor-cell">윤소호</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s7" placeholder="1F-A-1-4"><button onclick="confirmSeat('s7')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s7"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s7')" title="복사">🔫</button></div></div>
+<div class="row ok-kangpilseok" data-sid="s8" data-ok="kangpilseok" data-han="baekhyunghoon" data-go="parkyoungsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">9월 20일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">오프닝위크</a></div><div class="cell day day-sun">일</div><div class="cell time">18:30</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">백형훈</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s8" placeholder="1F-A-1-4"><button onclick="confirmSeat('s8')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s8"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s8')" title="복사">🔫</button></div></div>
+<div class="no-show" data-noshow="1">9월 21일 (월) — 공연 없음</div>
+<div class="row ok-choijaewoong" data-sid="s9" data-ok="choijaewoong" data-han="yoonsoho" data-go="goyoungbin" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">9월 22일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-wkd">화</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-choijaewoong">최재웅</span></div><div class="cell actor-cell">윤소호</div><div class="cell actor-cell">고영빈</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s9" placeholder="1F-A-1-4"><button onclick="confirmSeat('s9')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s9"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s9')" title="복사">🔫</button></div></div>
+<div class="row ok-songwongeun" data-sid="s10" data-ok="songwongeun" data-han="yoonsoho" data-go="parkyoungsoo" data-wan="kimtaehan" data-wada="jihyunjun_wada"><div class="cell date">9월 23일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-wkd">수</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-songwongeun">송원근</span></div><div class="cell actor-cell">윤소호</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">지현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s10" placeholder="1F-A-1-4"><button onclick="confirmSeat('s10')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s10"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s10')" title="복사">🔫</button></div></div>
+<div class="row ok-kangpilseok" data-sid="s11" data-ok="kangpilseok" data-han="wontaemin" data-go="kimjoonsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">9월 24일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-wkd">목</div><div class="cell time">14:00</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">원태민</div><div class="cell actor-cell">김준수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s11" placeholder="1F-A-1-4"><button onclick="confirmSeat('s11')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s11"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s11')" title="복사">🔫</button></div></div>
+<div class="row ok-songwongeun" data-sid="s12" data-ok="songwongeun" data-han="baekhyunghoon" data-go="kimjoonsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">9월 24일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-wkd">목</div><div class="cell time">18:30</div><div class="cell"><span class="role-pill badge-songwongeun">송원근</span></div><div class="cell actor-cell">백형훈</div><div class="cell actor-cell">김준수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s12" placeholder="1F-A-1-4"><button onclick="confirmSeat('s12')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s12"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s12')" title="복사">🔫</button></div></div>
+<div class="row ok-kangpilseok" data-sid="s13" data-ok="kangpilseok" data-han="munyoogang" data-go="parkyoungsoo" data-wan="shinjaehee" data-wada="shinhyunjun"><div class="cell date">9월 25일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-wkd">금</div><div class="cell time">14:00</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">문유강</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">신재희</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s13" placeholder="1F-A-1-4"><button onclick="confirmSeat('s13')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s13"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s13')" title="복사">🔫</button></div></div>
+<div class="row ok-kimkyungsoo" data-sid="s14" data-ok="kimkyungsoo" data-han="kimjaebeom" data-go="goyoungbin" data-wan="kimtaehan" data-wada="shinhyunjun"><div class="cell date">9월 26일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-sat">토</div><div class="cell time">14:00</div><div class="cell"><span class="role-pill badge-kimkyungsoo">김경수</span></div><div class="cell actor-cell">김재범</div><div class="cell actor-cell">고영빈</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s14" placeholder="1F-A-1-4"><button onclick="confirmSeat('s14')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s14"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s14')" title="복사">🔫</button></div></div>
+<div class="row ok-choijaewoong" data-sid="s15" data-ok="choijaewoong" data-han="yoonsoho" data-go="goyoungbin" data-wan="shinjaehee" data-wada="shinhyunjun"><div class="cell date">9월 26일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-sat">토</div><div class="cell time">18:30</div><div class="cell"><span class="role-pill badge-choijaewoong">최재웅</span></div><div class="cell actor-cell">윤소호</div><div class="cell actor-cell">고영빈</div><div class="cell actor-cell">신재희</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s15" placeholder="1F-A-1-4"><button onclick="confirmSeat('s15')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s15"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s15')" title="복사">🔫</button></div></div>
+<div class="row ok-kimkyungsoo" data-sid="s16" data-ok="kimkyungsoo" data-han="yoonsoho" data-go="parkyoungsoo" data-wan="kimtaehan" data-wada="jihyunjun_wada"><div class="cell date">9월 27일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-sun">일</div><div class="cell time">14:00</div><div class="cell"><span class="role-pill badge-kimkyungsoo">김경수</span></div><div class="cell actor-cell">윤소호</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">지현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s16" placeholder="1F-A-1-4"><button onclick="confirmSeat('s16')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s16"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s16')" title="복사">🔫</button></div></div>
+<div class="row ok-kangpilseok" data-sid="s17" data-ok="kangpilseok" data-han="wontaemin" data-go="parkyoungsoo" data-wan="kimtaehan" data-wada="jihyunjun_wada"><div class="cell date">9월 27일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">커튼콜위크</a></div><div class="cell day day-sun">일</div><div class="cell time">18:30</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">원태민</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">지현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s17" placeholder="1F-A-1-4"><button onclick="confirmSeat('s17')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s17"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s17')" title="복사">🔫</button></div></div>
+<div class="no-show" data-noshow="1">9월 28일 (월) — 공연 없음</div>
+<div class="row ok-kangpilseok" data-sid="s18" data-ok="kangpilseok" data-han="shinsungmin" data-go="kimjoonsoo" data-wan="shinjaehee" data-wada="jihyunjun_wada"><div class="cell date">9월 29일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">첫공무대인사</a></div><div class="cell day day-wkd">화</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">신성민<span class="fb">첫</span></div><div class="cell actor-cell">김준수</div><div class="cell actor-cell">신재희</div><div class="cell actor-cell">지현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s18" placeholder="1F-A-1-4"><button onclick="confirmSeat('s18')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s18"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s18')" title="복사">🔫</button></div></div>
+<div class="row ok-kimkyungsoo" data-sid="s19" data-ok="kimkyungsoo" data-han="yoonsoho" data-go="parkyoungsoo" data-wan="kimtaehan" data-wada="jihyunjun_wada"><div class="cell date">9월 30일</div><div class="cell day day-wkd">수</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-kimkyungsoo">김경수</span></div><div class="cell actor-cell">윤소호</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">지현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s19" placeholder="1F-A-1-4"><button onclick="confirmSeat('s19')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s19"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s19')" title="복사">🔫</button></div></div>
+<div class="row ok-sondongwoon" data-sid="s20" data-ok="sondongwoon" data-han="baekhyunghoon" data-go="kimjoonsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">10월 1일</div><div class="cell day day-wkd">목</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-sondongwoon">손동운</span></div><div class="cell actor-cell">백형훈</div><div class="cell actor-cell">김준수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s20" placeholder="1F-A-1-4"><button onclick="confirmSeat('s20')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s20"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s20')" title="복사">🔫</button></div></div>
+<div class="row ok-kangpilseok" data-sid="s21" data-ok="kangpilseok" data-han="kimjaebeom" data-go="goyoungbin" data-wan="kimtaehan" data-wada="shinhyunjun"><div class="cell date">10월 2일</div><div class="cell day day-wkd">금</div><div class="cell time">15:00</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">김재범</div><div class="cell actor-cell">고영빈</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s21" placeholder="1F-A-1-4"><button onclick="confirmSeat('s21')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s21"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s21')" title="복사">🔫</button></div></div>
+<div class="row ok-songwongeun" data-sid="s22" data-ok="songwongeun" data-han="yoonsoho" data-go="kimjoonsoo" data-wan="kimtaehan" data-wada="shinhyunjun"><div class="cell date">10월 2일<a class="event-tag" href="https://x.com/page1company/status/2084182688026824738?s=20" target="_blank" rel="noopener">막공무대인사</a></div><div class="cell day day-wkd">금</div><div class="cell time">19:30</div><div class="cell"><span class="role-pill badge-songwongeun">송원근</span></div><div class="cell actor-cell">윤소호<span class="fb fb-last">막</span></div><div class="cell actor-cell">김준수</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s22" placeholder="1F-A-1-4"><button onclick="confirmSeat('s22')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s22"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s22')" title="복사">🔫</button></div></div>
+<div class="row ok-songwongeun" data-sid="s23" data-ok="songwongeun" data-han="shinsungmin" data-go="parkyoungsoo" data-wan="shinjaehee" data-wada="shinhyunjun"><div class="cell date">10월 3일</div><div class="cell day day-sat">토</div><div class="cell time">14:00</div><div class="cell"><span class="role-pill badge-songwongeun">송원근</span></div><div class="cell actor-cell">신성민</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">신재희</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s23" placeholder="1F-A-1-4"><button onclick="confirmSeat('s23')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s23"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s23')" title="복사">🔫</button></div></div>
+<div class="row ok-kimkyungsoo" data-sid="s24" data-ok="kimkyungsoo" data-han="wontaemin" data-go="goyoungbin" data-wan="kimtaehan" data-wada="jihyunjun_wada"><div class="cell date">10월 3일</div><div class="cell day day-sat">토</div><div class="cell time">18:30</div><div class="cell"><span class="role-pill badge-kimkyungsoo">김경수</span></div><div class="cell actor-cell">원태민</div><div class="cell actor-cell">고영빈</div><div class="cell actor-cell">김태한</div><div class="cell actor-cell">지현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s24" placeholder="1F-A-1-4"><button onclick="confirmSeat('s24')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s24"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s24')" title="복사">🔫</button></div></div>
+<div class="row ok-choijaewoong" data-sid="s25" data-ok="choijaewoong" data-han="munyoogang" data-go="parkyoungsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">10월 4일</div><div class="cell day day-sun">일</div><div class="cell time">14:00</div><div class="cell"><span class="role-pill badge-choijaewoong">최재웅</span></div><div class="cell actor-cell">문유강</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s25" placeholder="1F-A-1-4"><button onclick="confirmSeat('s25')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s25"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s25')" title="복사">🔫</button></div></div>
+<div class="row ok-kangpilseok" data-sid="s26" data-ok="kangpilseok" data-han="kimjaebeom" data-go="parkyoungsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">10월 4일</div><div class="cell day day-sun">일</div><div class="cell time">18:30</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">김재범</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-s26" placeholder="1F-A-1-4"><button onclick="confirmSeat('s26')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-s26"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('s26')" title="복사">🔫</button></div></div>
+</div>
+
+<div class="settle-title">2026년 곤투모로우 정산</div>
+<div class="counting-section">
+  <div class="cgl">김옥균</div>
+  <div class="counting-box">
+    <div class="count-card"><div class="cnt-name" style="color:#7b261d;">강필석</div><div class="cnt-num" style="color:#7b261d;"><span id="cnt-kangpilseok">0</span><span id="tot-kangpilseok" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#7b431d;">최재웅</div><div class="cnt-num" style="color:#7b431d;"><span id="cnt-choijaewoong">0</span><span id="tot-choijaewoong" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#7b5f1d;">김경수</div><div class="cnt-num" style="color:#7b5f1d;"><span id="cnt-kimkyungsoo">0</span><span id="tot-kimkyungsoo" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#7b7b1d;">송원근</div><div class="cnt-num" style="color:#7b7b1d;"><span id="cnt-songwongeun">0</span><span id="tot-songwongeun" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#5f7b1d;">고훈정</div><div class="cnt-num" style="color:#5f7b1d;"><span id="cnt-gohoonjeong">0</span><span id="tot-gohoonjeong" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#437b1d;">손동운</div><div class="cnt-num" style="color:#437b1d;"><span id="cnt-sondongwoon">0</span><span id="tot-sondongwoon" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div>
+  </div>
+<div class="cgl">한정훈</div>
+  <div class="counting-box">
+    <div class="count-card"><div class="cnt-name" style="color:#267b1d;">김재범</div><div class="cnt-num" style="color:#267b1d;"><span id="cnt-kimjaebeom">0</span><span id="tot-kimjaebeom" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d7b30;">신성민</div><div class="cnt-num" style="color:#1d7b30;"><span id="cnt-shinsungmin">0</span><span id="tot-shinsungmin" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d7b4c;">백형훈</div><div class="cnt-num" style="color:#1d7b4c;"><span id="cnt-baekhyunghoon">0</span><span id="tot-baekhyunghoon" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d7b68;">윤소호</div><div class="cnt-num" style="color:#1d7b68;"><span id="cnt-yoonsoho">0</span><span id="tot-yoonsoho" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d727b;">원태민</div><div class="cnt-num" style="color:#1d727b;"><span id="cnt-wontaemin">0</span><span id="tot-wontaemin" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d557b;">문유강</div><div class="cnt-num" style="color:#1d557b;"><span id="cnt-munyoogang">0</span><span id="tot-munyoogang" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div>
+  </div>
+<div class="cgl">고종</div>
+  <div class="counting-box">
+    <div class="count-card"><div class="cnt-name" style="color:#1d397b;">고영빈</div><div class="cnt-num" style="color:#1d397b;"><span id="cnt-goyoungbin">0</span><span id="tot-goyoungbin" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d1d7b;">박영수</div><div class="cnt-num" style="color:#1d1d7b;"><span id="cnt-parkyoungsoo">0</span><span id="tot-parkyoungsoo" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#391d7b;">김준수</div><div class="cnt-num" style="color:#391d7b;"><span id="cnt-kimjoonsoo">0</span><span id="tot-kimjoonsoo" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div>
+  </div>
+<div class="cgl">이완</div>
+  <div class="counting-box">
+    <div class="count-card"><div class="cnt-name" style="color:#551d7b;">김태한</div><div class="cnt-num" style="color:#551d7b;"><span id="cnt-kimtaehan">0</span><span id="tot-kimtaehan" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#721d7b;">지현준</div><div class="cnt-num" style="color:#721d7b;"><span id="cnt-jihyunjun_wan">0</span><span id="tot-jihyunjun_wan" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#7b1d68;">신재희</div><div class="cnt-num" style="color:#7b1d68;"><span id="cnt-shinjaehee">0</span><span id="tot-shinjaehee" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div>
+  </div>
+<div class="cgl">와다</div>
+  <div class="counting-box">
+    <div class="count-card"><div class="cnt-name" style="color:#7b1d4c;">지현준</div><div class="cnt-num" style="color:#7b1d4c;"><span id="cnt-jihyunjun_wada">0</span><span id="tot-jihyunjun_wada" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#7b1d30;">신현준</div><div class="cnt-num" style="color:#7b1d30;"><span id="cnt-shinhyunjun">0</span><span id="tot-shinhyunjun" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div>
+  </div>
+  <div class="cnt-total-box">
+    <div class="cnt-total-card">
+      <div class="cnt-name">합계</div>
+      <div class="cnt-num"><span id="cnt-total">0</span><span id="tot-total" class="cnt-total-of">/0</span></div>
+      <div class="cnt-label">회</div>
+    </div>
+  </div>
+</div>
+
+<!-- 좌석 배치도 -->
+<div class="seat-map-section">
+  <div class="seat-map-title">내 좌석 정산</div>
+  <div style="text-align:center;font-size:10px;color:#6b6358;margin-bottom:10px;">좌석 입력 형식: <b style="color:#8f1f2c;">층-구역-열-번호</b> (예: 1F-A-1-4, 1F-OP-2-16, 2F-B-2-3)</div>
+  <div id="seatMapInner"></div>
+  <div class="seat-legend" id="seatLegend"><span style="font-size:11px;color:#8a7d6c;">좌석을 입력하면 여기에 표시됩니다</span></div>
+</div>
+
+<div style="max-width:720px;margin:16px auto 4px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;">
+  <button onclick="exportData()" style="padding:6px 16px;background:rgba(255,255,255,0.6);border:1px solid rgba(60,55,48,0.2);border-radius:20px;font-size:11px;font-weight:700;color:#8f1f2c;cursor:pointer;font-family:inherit;">💾 내 데이터 저장</button>
+  <label style="padding:6px 16px;background:rgba(255,255,255,0.6);border:1px solid rgba(60,55,48,0.2);border-radius:20px;font-size:11px;font-weight:700;color:#8f1f2c;cursor:pointer;">
+    📂 데이터 불러오기<input type="file" accept=".json" onchange="importData(event)" style="display:none;">
+  </label>
+</div>
+
+</div>
+
+<script>
+
+/* ================= SEAT MAP CONFIG ================= */
+const FLOORS = {
+  '1F': {label:'1층',zones:[
+    {prefix:'OP',label:'OP구역',rows:[
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,null,3,4,5,6,7,8,9,10,11,12,13,14,15,16,null,17,18]
+    ]},
+    {prefix:'A',label:'A구역',rows:[
+      [null,1,2,3,4,5],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [null,1,2,3,4,5],
+      [null,1,2,3,4,5],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [null,1,2,3,4,5],
+      [null,1,2,3,4,5],
+      [null,1,2,3,4,5],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6]
+    ]},
+    {prefix:'B',label:'B구역',rows:[
+      [null,1,2,3,4,5,6,7,8],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,null,null,null,null]
+    ]},
+    {prefix:'C',label:'C구역',rows:[
+      [1,2,3,4,5,null],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,null],
+      [1,2,3,4,5,null],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,null],
+      [1,2,3,4,5,null],
+      [1,2,3,4,5,null],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6]
+    ]}
+  ]},
+  '2F': {label:'2층',zones:[
+    {prefix:'A',label:'A구역',rows:[
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6]
+    ]},
+    {prefix:'B',label:'B구역',rows:[
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+      [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      [1,2,3,4,5,6,7,8,9,10,11,12]
+    ]},
+    {prefix:'C',label:'C구역',rows:[
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6],
+      [1,2,3,4,5,6]
+    ]}
+  ]}
+};
+const COLORS=[
+  {bg:'#c23b4a',border:'#8f2735',label:'1회'},
+  {bg:'#3a72c2',border:'#204d8f',label:'2회'},
+  {bg:'#d98a2e',border:'#a4671c',label:'3회'},
+  {bg:'#7a4ec2',border:'#54338f',label:'4회'},
+  {bg:'#3ea15f',border:'#25703f',label:'5회 이상'},
+];
+
+const showSeats=JSON.parse(localStorage.getItem('gontomorrow_seats_v1')||'{}');
+let focusedId=null;
+
+const SHOW_INFO={};
+document.querySelectorAll('.row[data-sid]').forEach(r=>{
+  SHOW_INFO[r.dataset.sid]={ok:r.dataset.ok,han:r.dataset.han,go:r.dataset.go,wan:r.dataset.wan,wada:r.dataset.wada};
+});
+
+const ACTOR={kangpilseok:'강필석',choijaewoong:'최재웅',kimkyungsoo:'김경수',songwongeun:'송원근',gohoonjeong:'고훈정',sondongwoon:'손동운',kimjaebeom:'김재범',shinsungmin:'신성민',baekhyunghoon:'백형훈',yoonsoho:'윤소호',wontaemin:'원태민',munyoogang:'문유강',goyoungbin:'고영빈',parkyoungsoo:'박영수',kimjoonsoo:'김준수',kimtaehan:'김태한',jihyunjun_wan:'지현준',shinjaehee:'신재희',jihyunjun_wada:'지현준',shinhyunjun:'신현준'};
+
+function exportData(){
+  const rowsData=[];
+  document.querySelectorAll('.row[data-sid]').forEach(r=>{
+    const sid=r.dataset.sid;
+    const dateCell=r.querySelector('.cell.date');
+    const date=[...dateCell.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('').trim();
+    const day=r.querySelector('.cell.day')?.textContent.trim()||'';
+    const time=r.querySelector('.cell.time')?.textContent.trim()||'';
+    rowsData.push({
+      sid, date, day, time,
+      ok:ACTOR[r.dataset.ok]||r.dataset.ok,
+      han:ACTOR[r.dataset.han]||r.dataset.han,
+      go:ACTOR[r.dataset.go]||r.dataset.go,
+      wan:ACTOR[r.dataset.wan]||r.dataset.wan,
+      wada:ACTOR[r.dataset.wada]||r.dataset.wada,
+      seats: showSeats[sid]||[]
+    });
+  });
+  const blob=new Blob([JSON.stringify(rowsData,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='곤투모로우_내좌석.json';a.click();URL.revokeObjectURL(url);
+}
+function importData(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(Array.isArray(data)){
+        data.forEach(item=>{ if(item && item.sid){ showSeats[item.sid]=item.seats||[]; } });
+      }else{
+        Object.keys(data).forEach(sid=>{showSeats[sid]=data[sid];});
+      }
+      saveSeats();Object.keys(showSeats).forEach(sid=>renderTags(sid));updateMap();updateCounting();
+      alert('데이터를 불러왔어요! 🎉');
+    }catch(e){alert('파일을 읽을 수 없어요 ㅠㅠ');}
+  };
+  reader.readAsText(file);e.target.value='';
+}
+function saveSeats(){localStorage.setItem('gontomorrow_seats_v1',JSON.stringify(showSeats));}
+
+/* ================= COUNTING ================= */
+const ROLE_KEYS = {
+  ok:["kangpilseok", "choijaewoong", "kimkyungsoo", "songwongeun", "gohoonjeong", "sondongwoon"],
+  han:["kimjaebeom", "shinsungmin", "baekhyunghoon", "yoonsoho", "wontaemin", "munyoogang"],
+  go:["goyoungbin", "parkyoungsoo", "kimjoonsoo"],
+  wan:["kimtaehan", "jihyunjun_wan", "shinjaehee"],
+  wada:["jihyunjun_wada", "shinhyunjun"],
+};
+const ALL_KEYS = [].concat(ROLE_KEYS.ok,ROLE_KEYS.han,ROLE_KEYS.go,ROLE_KEYS.wan,ROLE_KEYS.wada);
+
+function updateCounting(){
+  const cnt={}, totCnt={};
+  ALL_KEYS.forEach(k=>{cnt[k]=0;totCnt[k]=0;});
+  let total=0, totTotal=0;
+  const isAll=!sel.ok&&!sel.han&&!sel.go&&!sel.wan&&!sel.wada;
+
+  document.querySelectorAll('.row[data-sid]').forEach(r=>{
+    const sid=r.dataset.sid; if(!SHOW_INFO[sid])return;
+    const info=SHOW_INFO[sid];
+    if(!isAll){
+      if(sel.ok && info.ok!==sel.ok)return;
+      if(sel.han && info.han!==sel.han)return;
+      if(sel.go && info.go!==sel.go)return;
+      if(sel.wan && info.wan!==sel.wan)return;
+      if(sel.wada && info.wada!==sel.wada)return;
+    }
+    totCnt[info.ok]=(totCnt[info.ok]||0)+1;
+    totCnt[info.han]=(totCnt[info.han]||0)+1;
+    totCnt[info.go]=(totCnt[info.go]||0)+1;
+    totCnt[info.wan]=(totCnt[info.wan]||0)+1;
+    totCnt[info.wada]=(totCnt[info.wada]||0)+1;
+    totTotal++;
+  });
+
+  Object.keys(showSeats).forEach(sid=>{
+    if((showSeats[sid]||[]).length===0||!SHOW_INFO[sid])return;
+    const info=SHOW_INFO[sid];
+    if(!isAll){
+      if(sel.ok && info.ok!==sel.ok)return;
+      if(sel.han && info.han!==sel.han)return;
+      if(sel.go && info.go!==sel.go)return;
+      if(sel.wan && info.wan!==sel.wan)return;
+      if(sel.wada && info.wada!==sel.wada)return;
+    }
+    cnt[info.ok]=(cnt[info.ok]||0)+1;
+    cnt[info.han]=(cnt[info.han]||0)+1;
+    cnt[info.go]=(cnt[info.go]||0)+1;
+    cnt[info.wan]=(cnt[info.wan]||0)+1;
+    cnt[info.wada]=(cnt[info.wada]||0)+1;
+    total++;
+  });
+
+  ALL_KEYS.forEach(k=>{
+    const c=document.getElementById('cnt-'+k); if(c) c.textContent=cnt[k]||0;
+    const t=document.getElementById('tot-'+k); if(t) t.textContent='/'+(totCnt[k]||0);
+  });
+  const totalEl=document.getElementById('cnt-total'); if(totalEl) totalEl.textContent=total;
+  const totTotalEl=document.getElementById('tot-total'); if(totTotalEl) totTotalEl.textContent='/'+totTotal;
+}
+
+/* ================= SEAT MAP RENDER ================= */
+function renderZoneBlock(zone, floorKey){
+  const block=document.createElement('div'); block.className='zone-block';
+  const lbl=document.createElement('div'); lbl.className='zone-label'; lbl.textContent=zone.label;
+  block.appendChild(lbl);
+  const rowsWrap=document.createElement('div'); rowsWrap.className='zone-rows';
+  zone.rows.forEach((rowArr, idx)=>{
+    const rowEl=document.createElement('div'); rowEl.className='seat-row';
+    const rl=document.createElement('div'); rl.className='row-label'; rl.textContent=(idx+1);
+    rowEl.appendChild(rl);
+    rowArr.forEach(n=>{
+      if(n===null){
+        const ph=document.createElement('div'); ph.className='seat-gap';
+        rowEl.appendChild(ph);
+      }else{
+        const s=document.createElement('div'); s.className='seat';
+        const id=floorKey+'-'+zone.prefix+'-'+(idx+1)+'-'+n; s.id='S-'+id;
+        s.textContent=n;
+        rowEl.appendChild(s);
+      }
+    });
+    rowsWrap.appendChild(rowEl);
+  });
+  block.appendChild(rowsWrap);
+  return block;
+}
+
+function buildMap(){
+  const wrap=document.getElementById('seatMapInner');
+  wrap.innerHTML='';
+  Object.keys(FLOORS).forEach(floorKey=>{
+    const floor=FLOORS[floorKey];
+    const floorBlock=document.createElement('div'); floorBlock.className='floor-block';
+    const floorTitle=document.createElement('div'); floorTitle.className='floor-title'; floorTitle.textContent=floor.label;
+    floorBlock.appendChild(floorTitle);
+
+    if(floorKey==='1F'){
+      const stage=document.createElement('div'); stage.className='stage-box-mini'; stage.textContent='S T A G E';
+      floorBlock.appendChild(stage);
+    }
+
+    const opZone=floor.zones.find(z=>z.prefix==='OP');
+    if(opZone){
+      const opWrap=document.createElement('div'); opWrap.className='op-wrap';
+      opWrap.appendChild(renderZoneBlock(opZone, floorKey));
+      floorBlock.appendChild(opWrap);
+    }
+
+    const mainZones=floor.zones.filter(z=>z.prefix!=='OP');
+    const scrollWrap=document.createElement('div'); scrollWrap.className='zone-scroll';
+    const rowFlex=document.createElement('div'); rowFlex.className='zone-row';
+    mainZones.forEach(zone=>{ rowFlex.appendChild(renderZoneBlock(zone, floorKey)); });
+    scrollWrap.appendChild(rowFlex);
+    floorBlock.appendChild(scrollWrap);
+
+    wrap.appendChild(floorBlock);
+  });
+}
+
+function updateMap(){
+  document.querySelectorAll('.seat').forEach(el=>el.className='seat');
+  const cnt={};
+  const isAll=!sel.ok&&!sel.han&&!sel.go&&!sel.wan&&!sel.wada;
+  Object.keys(showSeats).forEach(sid=>{
+    if(!(showSeats[sid]||[]).length||!SHOW_INFO[sid])return;
+    const info=SHOW_INFO[sid];
+    if(!isAll){
+      if(sel.ok && info.ok!==sel.ok)return;
+      if(sel.han && info.han!==sel.han)return;
+      if(sel.go && info.go!==sel.go)return;
+      if(sel.wan && info.wan!==sel.wan)return;
+      if(sel.wada && info.wada!==sel.wada)return;
+    }
+    showSeats[sid].forEach(s=>{cnt[s]=(cnt[s]||0)+1;});
+  });
+  Object.keys(cnt).forEach(key=>{
+    const el=document.getElementById('S-'+key);
+    if(el){el.classList.add('mk'+Math.min(cnt[key],5));el.title=key+' ('+cnt[key]+'회)';}
+  });
+  updateLegend(cnt);
+}
+function updateLegend(cnt){
+  const el=document.getElementById('seatLegend');
+  const max=Math.max(0,...Object.values(cnt));
+  if(max===0){el.innerHTML='<span style="font-size:11px;color:#8a7d6c;">좌석을 입력하면 여기에 표시됩니다</span>';return;}
+  el.innerHTML='';
+  for(let i=1;i<=Math.min(max,5);i++){
+    const c=COLORS[i-1];const item=document.createElement('div');item.className='seat-legend-item';
+    item.innerHTML='<div class="seat-legend-dot" style="background:'+c.bg+';border:1px solid '+c.border+'"></div>'+c.label;
+    el.appendChild(item);
+  }
+}
+
+function parseSeat(val){
+  const m=val.trim().toUpperCase().replace(/\s+/g,'').match(/^(1F|2F)-(OP|A|B|C)-(\d{1,2})-(\d{1,2})$/);
+  if(!m)return null;
+  const floorKey=m[1], prefix=m[2], rowNum=parseInt(m[3]), seatNum=parseInt(m[4]);
+  const floor=FLOORS[floorKey]; if(!floor)return null;
+  const zone=floor.zones.find(z=>z.prefix===prefix); if(!zone)return null;
+  const rowArr=zone.rows[rowNum-1]; if(!rowArr||!rowArr.includes(seatNum))return null;
+  return floorKey+'-'+prefix+'-'+rowNum+'-'+seatNum;
+}
+function copyCast(sid){
+  const row=document.querySelector(`.row[data-sid="${sid}"]`);
+  if(!row)return;
+  const dateCell=row.querySelector('.cell.date');
+  const date=[...dateCell.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('').trim();
+  const day=row.querySelector('.cell.day')?.textContent.trim()||'';
+  const time=row.querySelector('.cell.time')?.textContent.trim()||'';
+  const tags=[...dateCell.querySelectorAll('.event-tag')].map(t=>t.textContent.replace(/^\S+\s/,'').trim()).join(', ');
+
+  const ok=ACTOR[row.dataset.ok]||row.dataset.ok;
+  const han=ACTOR[row.dataset.han]||row.dataset.han;
+  const go=ACTOR[row.dataset.go]||row.dataset.go;
+  const wan=ACTOR[row.dataset.wan]||row.dataset.wan;
+  const wada=ACTOR[row.dataset.wada]||row.dataset.wada;
+
+  let text=`뮤지컬 곤투모로우\n${date} ${day} ${time}\n김옥균 ${ok} / 한정훈 ${han} / 고종 ${go} / 이완 ${wan} / 와다 ${wada}`;
+  if(tags) text+=`\n${tags}`;
+  const btn=row.querySelector('.copy-btn');
+  navigator.clipboard.writeText(text).then(()=>{
+    if(btn){btn.textContent='✅';btn.classList.add('copied');setTimeout(()=>{btn.textContent='🔫';btn.classList.remove('copied');},1500);}
+  }).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0;';
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    if(btn){btn.textContent='✅';setTimeout(()=>btn.textContent='🔫',1500);}
+  });
+}
+
+function confirmFocused(){
+  if(!focusedId)return;
+  const input=document.getElementById('inp-'+focusedId);if(!input||!input.value.trim())return;
+  const key=parseSeat(input.value);
+  if(!key){input.style.borderColor='#c23b4a';setTimeout(()=>input.style.borderColor='',1000);return;}
+  if(!showSeats[focusedId])showSeats[focusedId]=[];
+  if(!showSeats[focusedId].includes(key)){showSeats[focusedId].push(key);renderTags(focusedId);updateMap();saveSeats();updateCounting();}
+  input.value='';input.style.borderColor='';input.focus();
+}
+function confirmSeat(sid){focusedId=sid;confirmFocused();}
+function removeSeat(sid,key){showSeats[sid]=(showSeats[sid]||[]).filter(s=>s!==key);renderTags(sid);updateMap();saveSeats();updateCounting();}
+function renderTags(sid){
+  const el=document.getElementById('tags-'+sid);if(!el)return;el.innerHTML='';
+  const input=document.getElementById('inp-'+sid);
+  const btn=input?input.nextElementSibling:null;
+  const cnt={};Object.values(showSeats).forEach(seats=>seats.forEach(s=>{cnt[s]=(cnt[s]||0)+1;}));
+  const seats=showSeats[sid]||[];
+  if(input) input.style.display=seats.length?'none':'';
+  if(btn) btn.style.display=seats.length?'none':'';
+  seats.forEach(key=>{
+    const c=COLORS[Math.min((cnt[key]||1),5)-1];
+    const tag=document.createElement('span');tag.className='seat-tag';tag.style.background=c.bg;
+    tag.innerHTML=key+' <span style="font-size:7px;opacity:0.8">×</span>';
+    tag.onclick=()=>removeSeat(sid,key);el.appendChild(tag);
+  });
+}
+
+document.querySelectorAll('.seat-input').forEach(inp=>{
+  inp.addEventListener('focus',()=>{focusedId=inp.id.replace('inp-','');});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();confirmFocused();}});
+});
+
+/* ================= FILTER ================= */
+const LABELS={kangpilseok:'강필석',choijaewoong:'최재웅',kimkyungsoo:'김경수',songwongeun:'송원근',gohoonjeong:'고훈정',sondongwoon:'손동운',kimjaebeom:'김재범',shinsungmin:'신성민',baekhyunghoon:'백형훈',yoonsoho:'윤소호',wontaemin:'원태민',munyoogang:'문유강',goyoungbin:'고영빈',parkyoungsoo:'박영수',kimjoonsoo:'김준수',kimtaehan:'김태한',jihyunjun_wan:'지현준',shinjaehee:'신재희',jihyunjun_wada:'지현준',shinhyunjun:'신현준'};
+let sel={ok:null, han:null, go:null, wan:null, wada:null};
+let pinnedSel=JSON.parse(localStorage.getItem('gontomorrow_pin_v1')||'null');
+
+function toggleFilter(attr, val){
+  if(sel[attr]===val) sel[attr]=null;
+  else sel[attr]=val;
+  applyFilter();
+}
+function resetFilter(){
+  sel={ok:null,han:null,go:null,wan:null,wada:null};
+  applyFilter();
+}
+function applyFilter(){
+  const isAll=!sel.ok&&!sel.han&&!sel.go&&!sel.wan&&!sel.wada;
+
+  document.querySelectorAll('.fb2').forEach(b=>b.classList.remove('active'));
+  if(isAll) document.querySelector('.btn-all').classList.add('active');
+  ['ok','han','go','wan','wada'].forEach(attr=>{
+    if(sel[attr]) document.querySelector(`.btn-${sel[attr]}[onclick*="'${attr}'"]`)?.classList.add('active');
+  });
+
+  document.querySelectorAll('.fb2').forEach(b=>b.classList.remove('pinned'));
+  if(pinnedSel){
+    ['ok','han','go','wan','wada'].forEach(attr=>{
+      if(pinnedSel[attr]) document.querySelector(`.btn-${pinnedSel[attr]}[onclick*="'${attr}'"]`)?.classList.add('pinned');
+    });
+  }
+
+  const rows=document.querySelectorAll('.row[data-sid]');
+  rows.forEach(r=>{
+    let show=true;
+    if(sel.ok && r.dataset.ok!==sel.ok) show=false;
+    if(sel.han && r.dataset.han!==sel.han) show=false;
+    if(sel.go && r.dataset.go!==sel.go) show=false;
+    if(sel.wan && r.dataset.wan!==sel.wan) show=false;
+    if(sel.wada && r.dataset.wada!==sel.wada) show=false;
+    r.classList.toggle('hidden',!show);
+  });
+
+  document.querySelectorAll('[data-noshow]').forEach(el=>el.style.display=isAll?'':'none');
+  document.querySelectorAll('.week-divider').forEach(d=>{
+    let next=d.nextElementSibling, has=false;
+    while(next && !next.classList.contains('week-divider')){
+      if(next.classList.contains('row') && !next.classList.contains('hidden')){has=true;break;}
+      next=next.nextElementSibling;
+    }
+    d.style.display=has?'':'none';
+  });
+
+  const visible=[...rows].filter(r=>!r.classList.contains('hidden')).length;
+  const parts=[];
+  ['ok','han','go','wan','wada'].forEach(attr=>{if(sel[attr]) parts.push(LABELS[sel[attr]]);});
+  document.getElementById('countInfo').textContent=(parts.length?parts.join(' · '):'전체')+' '+visible+'회';
+
+  updateCounting();
+  updateMap();
+  renderPinBar();
+}
+
+function renderPinBar(){
+  const bar=document.getElementById('pinBar');
+  const isAll=!sel.ok&&!sel.han&&!sel.go&&!sel.wan&&!sel.wada;
+  const isPinned=pinnedSel&&JSON.stringify(sel)===JSON.stringify(pinnedSel);
+  let html='';
+  if(pinnedSel&&(pinnedSel.ok||pinnedSel.han||pinnedSel.go||pinnedSel.wan||pinnedSel.wada)){
+    const parts=[];
+    ['ok','han','go','wan','wada'].forEach(attr=>{if(pinnedSel[attr]) parts.push(LABELS[pinnedSel[attr]]);});
+    html+=`<span class="pin-status"><span class="pin-dot"></span>📌 ${parts.join(' · ')} 고정 중</span>`;
+    html+=`<button class="pin-btn pin-btn-clear" onclick="clearPin()">고정 해제</button>`;
+  }
+  if(!isAll && !isPinned){
+    const parts=[];
+    ['ok','han','go','wan','wada'].forEach(attr=>{if(sel[attr]) parts.push(LABELS[sel[attr]]);});
+    html+=`<button class="pin-btn pin-btn-set" onclick="setPin()">📌 ${parts.join(' · ')} 고정하기</button>`;
+  }
+  if(!html) html='<span class="pin-hint">배우를 선택하고 📌 고정하면 다음 접속 때도 유지돼요</span>';
+  bar.innerHTML=html;
+}
+function setPin(){
+  pinnedSel={...sel};
+  localStorage.setItem('gontomorrow_pin_v1',JSON.stringify(pinnedSel));
+  applyFilter();
+}
+function clearPin(){
+  pinnedSel=null;
+  localStorage.removeItem('gontomorrow_pin_v1');
+  applyFilter();
+}
+
+/* ================= APPLY ACTOR BADGES (han/go/wan/wada) ================= */
+document.querySelectorAll('.row[data-sid]').forEach(r=>{
+  const order=['han','go','wan','wada'];
+  const cells=r.querySelectorAll('.cell.actor-cell');
+  cells.forEach((cell,i)=>{
+    const attr=order[i]; const key=r.dataset[attr];
+    if(!key) return;
+    const html=cell.innerHTML;
+    cell.innerHTML=`<span class="role-pill badge-${key}">${html}</span>`;
+  });
+});
+
+/* ================= INIT ================= */
+buildMap();
+Object.keys(showSeats).forEach(sid=>renderTags(sid));
+updateMap();updateCounting();
+
+if(pinnedSel){
+  sel={ok:pinnedSel.ok||null,han:pinnedSel.han||null,go:pinnedSel.go||null,wan:pinnedSel.wan||null,wada:pinnedSel.wada||null};
+}
+applyFilter();
+
+</script>
+</body>
+</html>
