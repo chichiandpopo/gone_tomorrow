@@ -99,8 +99,8 @@ body{font-family:'Noto Sans KR',sans-serif;
 .role-pill{font-size:8.5px;font-weight:700;padding:1px 3px;border-radius:5px;display:inline-block;line-height:1.35;white-space:nowrap;}
 .event-tag{display:block;font-size:7.5px;font-weight:700;color:#8f1f2c;opacity:0.85;margin-top:1px;white-space:nowrap;text-decoration:none;}
 .event-tag:hover{opacity:1;text-decoration:underline;}
-.fb{display:inline-block;background:#8f1f2c;color:white;font-size:6px;font-weight:700;
-  padding:0 2px;border-radius:5px;margin-left:1px;vertical-align:middle;}
+.fb{display:block;background:#8f1f2c;color:white;font-size:6px;font-weight:700;
+  padding:0 3px;border-radius:5px;margin:1px auto 0;width:fit-content;line-height:1.4;}
 .fb.fb-last{background:#555;}
 .copy-btn{background:none;border:none;cursor:pointer;font-size:13px;padding:1px;display:flex;
   align-items:center;justify-content:center;width:100%;transition:all 0.15s;margin-top:1px;}
@@ -124,8 +124,10 @@ body{font-family:'Noto Sans KR',sans-serif;
 .counting-section{max-width:720px;margin:0 auto;padding:0 10px;}
 .cgl{font-size:10.5px;font-weight:700;color:#6b6358;text-align:center;letter-spacing:2px;margin:6px 0 3px;}
 .counting-box{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:2px;}
+.counting-box.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;max-width:400px;margin:0 auto 2px;}
 .count-card{flex:1;min-width:60px;max-width:95px;background:rgba(255,255,255,0.75);border-radius:10px;
   padding:6px 3px;text-align:center;border:1px solid rgba(60,55,48,0.14);}
+.counting-box.grid3 .count-card{flex:none;min-width:0;max-width:none;width:auto;}
 .count-card .cnt-name{font-size:11px;font-weight:700;margin-bottom:2px;}
 .count-card .cnt-num{font-size:19px;font-weight:700;line-height:1;}
 .count-card .cnt-label{font-size:8px;color:#8a7d6c;}
@@ -363,11 +365,11 @@ body{font-family:'Noto Sans KR',sans-serif;
 <div class="settle-title">2026년 곤투모로우 정산</div>
 <div class="counting-section">
   <div class="cgl">김옥균</div>
-  <div class="counting-box">
+  <div class="counting-box grid3">
     <div class="count-card"><div class="cnt-name" style="color:#7b261d;">강필석</div><div class="cnt-num" style="color:#7b261d;"><span id="cnt-kangpilseok">0</span><span id="tot-kangpilseok" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#7b431d;">최재웅</div><div class="cnt-num" style="color:#7b431d;"><span id="cnt-choijaewoong">0</span><span id="tot-choijaewoong" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#7b5f1d;">김경수</div><div class="cnt-num" style="color:#7b5f1d;"><span id="cnt-kimkyungsoo">0</span><span id="tot-kimkyungsoo" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#7b7b1d;">송원근</div><div class="cnt-num" style="color:#7b7b1d;"><span id="cnt-songwongeun">0</span><span id="tot-songwongeun" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#5f7b1d;">고훈정</div><div class="cnt-num" style="color:#5f7b1d;"><span id="cnt-gohoonjeong">0</span><span id="tot-gohoonjeong" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#437b1d;">손동운</div><div class="cnt-num" style="color:#437b1d;"><span id="cnt-sondongwoon">0</span><span id="tot-sondongwoon" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div>
   </div>
 <div class="cgl">한정훈</div>
-  <div class="counting-box">
+  <div class="counting-box grid3">
     <div class="count-card"><div class="cnt-name" style="color:#267b1d;">김재범</div><div class="cnt-num" style="color:#267b1d;"><span id="cnt-kimjaebeom">0</span><span id="tot-kimjaebeom" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d7b30;">신성민</div><div class="cnt-num" style="color:#1d7b30;"><span id="cnt-shinsungmin">0</span><span id="tot-shinsungmin" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d7b4c;">백형훈</div><div class="cnt-num" style="color:#1d7b4c;"><span id="cnt-baekhyunghoon">0</span><span id="tot-baekhyunghoon" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d7b68;">윤소호</div><div class="cnt-num" style="color:#1d7b68;"><span id="cnt-yoonsoho">0</span><span id="tot-yoonsoho" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d727b;">원태민</div><div class="cnt-num" style="color:#1d727b;"><span id="cnt-wontaemin">0</span><span id="tot-wontaemin" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div><div class="count-card"><div class="cnt-name" style="color:#1d557b;">문유강</div><div class="cnt-num" style="color:#1d557b;"><span id="cnt-munyoogang">0</span><span id="tot-munyoogang" class="cnt-total-of">/0</span></div><div class="cnt-label">회</div></div>
   </div>
 <div class="cgl">고종</div>
