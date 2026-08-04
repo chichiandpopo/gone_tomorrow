@@ -733,11 +733,48 @@ function parseSeat(val){
   const rowArr=zone.rows[rowNum-1]; if(!rowArr||!rowArr.includes(seatNum))return null;
   return floorKey+'-'+prefix+'-'+rowNum+'-'+seatNum;
 }
+function copyText(text, btn){
+  const onSuccess=()=>{
+    if(btn){btn.textContent='✅';btn.classList.add('copied');setTimeout(()=>{btn.textContent='🔫';btn.classList.remove('copied');},1500);}
+  };
+  const legacyFallback=()=>{
+    try{
+      const ta=document.createElement('textarea');
+      ta.value=text;
+      ta.setAttribute('readonly','');
+      ta.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;padding:0;border:none;outline:none;box-shadow:none;background:transparent;font-size:16px;';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0,text.length);
+      const ok=document.execCommand('copy');
+      document.body.removeChild(ta);
+      if(ok){ onSuccess(); return true; }
+    }catch(e){}
+    return false;
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(onSuccess).catch(()=>{
+      if(!legacyFallback()){
+        if(btn){btn.textContent='⚠️';setTimeout(()=>btn.textContent='🔫',1500);}
+        prompt('복사가 자동으로 안 돼요. 아래 텍스트를 직접 선택해서 복사해주세요:', text);
+      }
+    });
+  }else{
+    if(!legacyFallback()){
+      if(btn){btn.textContent='⚠️';setTimeout(()=>btn.textContent='🔫',1500);}
+      prompt('복사가 자동으로 안 돼요. 아래 텍스트를 직접 선택해서 복사해주세요:', text);
+    }
+  }
+}
+
 function copyCast(sid){
   const row=document.querySelector(`.row[data-sid="${sid}"]`);
   if(!row)return;
   const dateCell=row.querySelector('.cell.date');
-  const date=[...dateCell.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('').trim();
+  const dateRaw=[...dateCell.childNodes].filter(n=>n.nodeType===3).map(n=>n.textContent.trim()).join('').trim();
+  const dm=dateRaw.match(/(\d+)월\s*(\d+)일/);
+  const date=dm ? `${dm[1]}/${dm[2]}` : dateRaw;
   const day=row.querySelector('.cell.day')?.textContent.trim()||'';
   const time=row.querySelector('.cell.time')?.textContent.trim()||'';
   const tags=[...dateCell.querySelectorAll('.event-tag')].map(t=>t.textContent.replace(/^\S+\s/,'').trim()).join(', ');
@@ -748,16 +785,10 @@ function copyCast(sid){
   const wan=ACTOR[row.dataset.wan]||row.dataset.wan;
   const wada=ACTOR[row.dataset.wada]||row.dataset.wada;
 
-  let text=`뮤지컬 곤투모로우\n${date} ${day} ${time}\n김옥균 ${ok} / 한정훈 ${han} / 고종 ${go} / 이완 ${wan} / 와다 ${wada}`;
+  let text=`뮤지컬 곤투모로우\n${date} ${day} ${time}\n${ok} ${han} ${go} ${wan} ${wada}`;
   if(tags) text+=`\n${tags}`;
   const btn=row.querySelector('.copy-btn');
-  navigator.clipboard.writeText(text).then(()=>{
-    if(btn){btn.textContent='✅';btn.classList.add('copied');setTimeout(()=>{btn.textContent='🔫';btn.classList.remove('copied');},1500);}
-  }).catch(()=>{
-    const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0;';
-    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
-    if(btn){btn.textContent='✅';setTimeout(()=>btn.textContent='🔫',1500);}
-  });
+  copyText(text, btn);
 }
 
 function confirmFocused(){
