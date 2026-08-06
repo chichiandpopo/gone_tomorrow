@@ -651,7 +651,8 @@ function renderZoneBlock(zone, floorKey, sz){
     const rowEl=document.createElement('div'); rowEl.className='seat-row';
     const rl=document.createElement('div'); rl.className='row-label'; rl.textContent=(idx+1);
     rl.style.cssText=`width:${labelW}px;font-size:${labelFontSz}px;`;
-    rowEl.appendChild(rl);
+    const labelOnRight = zone.prefix==='C';
+    if(!labelOnRight) rowEl.appendChild(rl);
     rowArr.forEach(n=>{
       if(n===null){
         const ph=document.createElement('div'); ph.className='seat-gap';
@@ -665,6 +666,7 @@ function renderZoneBlock(zone, floorKey, sz){
         rowEl.appendChild(s);
       }
     });
+    if(labelOnRight) rowEl.appendChild(rl);
     rowsWrap.appendChild(rowEl);
   });
   block.appendChild(rowsWrap);
