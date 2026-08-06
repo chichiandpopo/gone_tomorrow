@@ -144,8 +144,8 @@ body{font-family:'Noto Sans KR',sans-serif;
 .cnt-total-of{font-size:0.55em;font-weight:500;color:#999;margin-left:1px;}
 
 /* ---------- seat map ---------- */
-.seat-map-section{max-width:720px;margin:14px auto 0;background:rgba(255,255,255,0.78);
-  border-radius:16px;padding:14px 8px 16px;border:1px solid rgba(60,55,48,0.16);}
+.seat-map-section{max-width:740px;margin:14px -8px 0;background:rgba(255,255,255,0.78);
+  border-radius:16px;padding:14px 2px 16px;border:1px solid rgba(60,55,48,0.16);}
 .seat-map-title{text-align:center;font-size:13px;font-weight:700;color:#8f1f2c;margin-bottom:8px;
   letter-spacing:1px;}
 .stage-box{background:#2a2420;color:#e8ded0;border-radius:6px;text-align:center;font-size:11px;
@@ -158,15 +158,15 @@ body{font-family:'Noto Sans KR',sans-serif;
   font-weight:700;padding:4px 0;letter-spacing:3px;margin-bottom:10px;width:100%;}
 .op-wrap{display:flex;justify-content:center;margin-bottom:12px;}
 .zone-scroll{overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
-.zone-row{display:inline-flex;gap:16px;padding:0 6px;margin:0 auto;justify-content:center;min-width:100%;}
+.zone-row{display:inline-flex;gap:9px;padding:0;margin:0 auto;justify-content:center;min-width:100%;}
 .zone-block{flex-shrink:0;}
 .zone-label{font-size:9.5px;font-weight:700;color:#6b6358;text-align:center;margin-bottom:3px;
   letter-spacing:1px;white-space:nowrap;}
 .zone-rows{display:flex;flex-direction:column;gap:1px;align-items:center;}
 .seat-row{display:flex;align-items:center;gap:1px;}
-.row-label{font-size:6px;font-weight:700;color:#8a7d6c;flex-shrink:0;text-align:center;width:9px;}
-.seat-gap{width:10px;height:10px;flex-shrink:0;}
-.seat{width:10px;height:10px;font-size:5.5px;border-radius:2px;font-weight:700;display:flex;
+.row-label{font-size:5.5px;font-weight:700;color:#8a7d6c;flex-shrink:0;text-align:center;width:7px;}
+.seat-gap{width:8.5px;height:8.5px;flex-shrink:0;}
+.seat{width:8.5px;height:8.5px;font-size:5px;border-radius:2px;font-weight:700;display:flex;
   align-items:center;justify-content:center;flex-shrink:0;
   background:#eae5d8;color:#b0a284;border:1px solid #d8cdb8;}
 .seat.mk1{background:#8f1f2c!important;color:white!important;border-color:#6b1620!important;}
@@ -639,22 +639,28 @@ function updateCounting(){
 }
 
 /* ================= SEAT MAP RENDER ================= */
-function renderZoneBlock(zone, floorKey){
+function renderZoneBlock(zone, floorKey, sz){
   const block=document.createElement('div'); block.className='zone-block';
   const lbl=document.createElement('div'); lbl.className='zone-label'; lbl.textContent=zone.label;
   block.appendChild(lbl);
   const rowsWrap=document.createElement('div'); rowsWrap.className='zone-rows';
+  const labelW=Math.max(7,Math.round(sz*0.72));
+  const fontSz=Math.max(5,Math.round(sz*0.52));
+  const labelFontSz=Math.max(5.5,Math.round(sz*0.6));
   zone.rows.forEach((rowArr, idx)=>{
     const rowEl=document.createElement('div'); rowEl.className='seat-row';
     const rl=document.createElement('div'); rl.className='row-label'; rl.textContent=(idx+1);
+    rl.style.cssText=`width:${labelW}px;font-size:${labelFontSz}px;`;
     rowEl.appendChild(rl);
     rowArr.forEach(n=>{
       if(n===null){
         const ph=document.createElement('div'); ph.className='seat-gap';
+        ph.style.cssText=`width:${sz}px;height:${sz}px;`;
         rowEl.appendChild(ph);
       }else{
         const s=document.createElement('div'); s.className='seat';
         const id=floorKey+'-'+zone.prefix+'-'+(idx+1)+'-'+n; s.id='S-'+id;
+        s.style.cssText=`width:${sz}px;height:${sz}px;font-size:${fontSz}px;`;
         s.textContent=n;
         rowEl.appendChild(s);
       }
@@ -665,9 +671,25 @@ function renderZoneBlock(zone, floorKey){
   return block;
 }
 
+function computeSeatSize(containerWidth){
+  // widest row-set across all floors: A(6)+B(15)+C(6) = 27 seats, 24 internal gaps, 3 labels, 2 inter-zone gaps
+  const totalSeats=27, internalGaps=24, labels=3, interZoneGap=8, seatGap=1;
+  // labelW scales with seat size (~0.72*sz); solve approx then refine once
+  let sz=12;
+  for(let i=0;i<4;i++){
+    const labelW=Math.max(7,sz*0.72);
+    const used = labels*labelW + totalSeats*sz + internalGaps*seatGap + 2*interZoneGap;
+    const ratio = containerWidth/used;
+    sz = sz*ratio;
+  }
+  return Math.max(8, Math.min(20, Math.round(sz*10)/10));
+}
+
 function buildMap(){
   const wrap=document.getElementById('seatMapInner');
   wrap.innerHTML='';
+  const containerWidth = wrap.clientWidth || (wrap.parentElement ? wrap.parentElement.clientWidth : 340);
+  const sz = computeSeatSize(Math.max(280, containerWidth - 4));
   Object.keys(FLOORS).forEach(floorKey=>{
     const floor=FLOORS[floorKey];
     const floorBlock=document.createElement('div'); floorBlock.className='floor-block';
@@ -682,20 +704,25 @@ function buildMap(){
     const opZone=floor.zones.find(z=>z.prefix==='OP');
     if(opZone){
       const opWrap=document.createElement('div'); opWrap.className='op-wrap';
-      opWrap.appendChild(renderZoneBlock(opZone, floorKey));
+      opWrap.appendChild(renderZoneBlock(opZone, floorKey, sz));
       floorBlock.appendChild(opWrap);
     }
 
     const mainZones=floor.zones.filter(z=>z.prefix!=='OP');
     const scrollWrap=document.createElement('div'); scrollWrap.className='zone-scroll';
     const rowFlex=document.createElement('div'); rowFlex.className='zone-row';
-    mainZones.forEach(zone=>{ rowFlex.appendChild(renderZoneBlock(zone, floorKey)); });
+    mainZones.forEach(zone=>{ rowFlex.appendChild(renderZoneBlock(zone, floorKey, sz)); });
     scrollWrap.appendChild(rowFlex);
     floorBlock.appendChild(scrollWrap);
 
     wrap.appendChild(floorBlock);
   });
 }
+let _resizeTO=null;
+window.addEventListener('resize', ()=>{
+  clearTimeout(_resizeTO);
+  _resizeTO=setTimeout(()=>{ buildMap(); updateMap(); Object.keys(showSeats).forEach(sid=>renderTags(sid)); }, 200);
+});
 
 function updateMap(){
   document.querySelectorAll('.seat').forEach(el=>el.className='seat');
