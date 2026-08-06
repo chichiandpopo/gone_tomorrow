@@ -128,6 +128,8 @@ body{font-family:'Noto Sans KR',sans-serif;
 .count-card{flex:1;min-width:60px;max-width:95px;background:rgba(255,255,255,0.75);border-radius:10px;
   padding:6px 3px;text-align:center;border:1px solid rgba(60,55,48,0.14);}
 .counting-box.grid3 .count-card{flex:none;min-width:0;max-width:none;width:auto;}
+.count-card{transition:opacity 0.15s,filter 0.15s;}
+.count-card.dim{opacity:0.32;filter:grayscale(70%);}
 .count-card .cnt-name{font-size:11px;font-weight:700;margin-bottom:2px;}
 .count-card .cnt-num{font-size:19px;font-weight:700;line-height:1;}
 .count-card .cnt-label{font-size:8px;color:#8a7d6c;}
@@ -898,8 +900,22 @@ function applyFilter(){
   document.getElementById('countInfo').textContent=(parts.length?parts.join(' · '):'전체')+' '+visible+'회';
 
   updateCounting();
+  updateCountingDim();
   updateMap();
   renderPinBar();
+}
+
+function updateCountingDim(){
+  ROLE_ATTRS.forEach(attr=>{
+    const activeSet=sel[attr];
+    ROLE_KEYS[attr].forEach(key=>{
+      const numEl=document.getElementById('cnt-'+key);
+      const card=numEl ? numEl.closest('.count-card') : null;
+      if(!card) return;
+      if(activeSet.length && !activeSet.includes(key)) card.classList.add('dim');
+      else card.classList.remove('dim');
+    });
+  });
 }
 
 function renderPinBar(){
