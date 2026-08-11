@@ -253,13 +253,21 @@ body{font-family:'Noto Sans KR',sans-serif;
   color:#8f1f2c;text-decoration:none;backdrop-filter:blur(6px);box-shadow:0 2px 8px rgba(143,31,44,0.15);
   white-space:nowrap;font-family:'Noto Sans KR',sans-serif;transition:background 0.15s;}
 .archive-btn:hover{background:#fff;}
+.save-img-btn{position:fixed;top:52px;right:12px;z-index:999;background:rgba(255,255,255,0.85);
+  border:1px solid rgba(143,31,44,0.45);border-radius:20px;padding:6px 12px;font-size:11px;font-weight:700;
+  color:#8f1f2c;text-decoration:none;backdrop-filter:blur(6px);box-shadow:0 2px 8px rgba(143,31,44,0.15);
+  white-space:nowrap;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:background 0.15s;}
+.save-img-btn:hover{background:#fff;}
+.save-img-btn:disabled{opacity:0.6;cursor:default;}
 @media(min-width:768px){
   .archive-btn{top:18px;right:18px;font-size:12px;padding:7px 14px;}
+  .save-img-btn{top:60px;right:18px;font-size:12px;padding:7px 14px;}
 }
 </style>
 </head>
 <body>
 <a href="https://chichiandpopo.github.io/stage_archive/" target="_blank" class="archive-btn">🎭 관극 아카이브</a>
+<button id="saveImgBtn" class="save-img-btn" onclick="saveArchiveImage()">📸 정산판 저장</button>
 
 <div class="hero">
   <div class="hero-inner">
@@ -379,6 +387,7 @@ body{font-family:'Noto Sans KR',sans-serif;
 <div class="row ok-kangpilseok" data-sid="1004-1830" data-ok="kangpilseok" data-han="kimjaebeom" data-go="parkyoungsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">10월 4일</div><div class="cell day day-sun">일</div><div class="cell time">18:30</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">김재범</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-1004-1830" placeholder=""><button onclick="confirmSeat('1004-1830')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-1004-1830"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('1004-1830')" title="복사">🔫</button></div></div>
 </div>
 
+<div id="captureArea" style="background:#f2ecdd;padding:18px 6px 22px;">
 <div class="settle-title">2026년 곤투모로우 정산</div>
 <div class="counting-section">
   <div class="cgl">김옥균</div>
@@ -416,6 +425,8 @@ body{font-family:'Noto Sans KR',sans-serif;
   <div id="seatMapInner"></div>
   <div class="seat-legend" id="seatLegend"><span style="font-size:11px;color:#8a7d6c;">좌석을 입력하면 여기에 표시됩니다</span></div>
 </div>
+</div>
+<!-- /captureArea -->
 
 <div style="max-width:720px;margin:16px auto 4px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;">
   <button onclick="exportData()" style="padding:6px 16px;background:rgba(255,255,255,0.6);border:1px solid rgba(60,55,48,0.2);border-radius:20px;font-size:11px;font-weight:700;color:#8f1f2c;cursor:pointer;font-family:inherit;">💾 내 데이터 저장</button>
@@ -426,7 +437,30 @@ body{font-family:'Noto Sans KR',sans-serif;
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
+function saveArchiveImage(){
+  const btn=document.getElementById('saveImgBtn');
+  const target=document.getElementById('captureArea');
+  if(!target || typeof html2canvas==='undefined'){
+    alert('이미지 저장 기능을 불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해주세요.');
+    return;
+  }
+  const origText=btn.textContent;
+  btn.disabled=true; btn.textContent='⏳ 저장 중...';
+  html2canvas(target, {backgroundColor:'#f2ecdd', scale:2, useCORS:true}).then(canvas=>{
+    const link=document.createElement('a');
+    link.download='곤투모로우_정산판.jpg';
+    link.href=canvas.toDataURL('image/jpeg', 0.92);
+    link.click();
+    btn.textContent='✅ 저장 완료!';
+    setTimeout(()=>{ btn.textContent=origText; btn.disabled=false; }, 1500);
+  }).catch(err=>{
+    console.error(err);
+    alert('이미지 저장 중 오류가 발생했어요. 다시 시도해주세요.');
+    btn.textContent=origText; btn.disabled=false;
+  });
+}
 
 /* ================= SEAT MAP CONFIG ================= */
 const FLOORS = {
