@@ -387,7 +387,7 @@ body{font-family:'Noto Sans KR',sans-serif;
 <div class="row ok-kangpilseok" data-sid="1004-1830" data-ok="kangpilseok" data-han="kimjaebeom" data-go="parkyoungsoo" data-wan="jihyunjun_wan" data-wada="shinhyunjun"><div class="cell date">10월 4일</div><div class="cell day day-sun">일</div><div class="cell time">18:30</div><div class="cell"><span class="role-pill badge-kangpilseok">강필석</span></div><div class="cell actor-cell">김재범</div><div class="cell actor-cell">박영수</div><div class="cell actor-cell">지현준</div><div class="cell actor-cell">신현준</div><div class="cell seat-cell"><div class="seat-input-row"><input class="seat-input" inputmode="text" enterkeyhint="done" autocomplete="off" autocapitalize="characters" id="inp-1004-1830" placeholder=""><button onclick="confirmSeat('1004-1830')" class="seat-ok-btn">✓</button></div><div class="seat-tags" id="tags-1004-1830"></div></div><div class="cell copy-cell"><button class="copy-btn" onclick="copyCast('1004-1830')" title="복사">🔫</button></div></div>
 </div>
 
-<div id="captureArea" style="background:#f2ecdd;padding:18px 6px 22px;">
+<div id="captureArea" style="background:#dcdcdc;padding:18px 6px 22px;">
 <div class="settle-title">2026년 곤투모로우 정산</div>
 <div class="counting-section">
   <div class="cgl">김옥균</div>
@@ -448,7 +448,7 @@ function saveArchiveImage(){
   }
   const origText=btn.textContent;
   btn.disabled=true; btn.textContent='⏳ 저장 중...';
-  html2canvas(target, {backgroundColor:'#f2ecdd', scale:2, useCORS:true}).then(canvas=>{
+  html2canvas(target, {backgroundColor:'#dcdcdc', scale:2, useCORS:true}).then(canvas=>{
     const link=document.createElement('a');
     link.download='곤투모로우_정산판.jpg';
     link.href=canvas.toDataURL('image/jpeg', 0.92);
