@@ -248,26 +248,18 @@ body{font-family:'Noto Sans KR',sans-serif;
 .row.ok-songwongeun{background:#f8f8e7;}
 .row.ok-gohoonjeong{background:#f3f8e7;}
 .row.ok-sondongwoon{background:#eef8e7;}
-.archive-btn{position:fixed;top:12px;right:12px;z-index:999;background:rgba(255,255,255,0.85);
-  border:1px solid rgba(143,31,44,0.45);border-radius:20px;padding:6px 12px;font-size:11px;font-weight:700;
-  color:#8f1f2c;text-decoration:none;backdrop-filter:blur(6px);box-shadow:0 2px 8px rgba(143,31,44,0.15);
-  white-space:nowrap;font-family:'Noto Sans KR',sans-serif;transition:background 0.15s;}
-.archive-btn:hover{background:#fff;}
-.save-img-btn{position:fixed;top:52px;right:12px;z-index:999;background:rgba(255,255,255,0.85);
-  border:1px solid rgba(143,31,44,0.45);border-radius:20px;padding:6px 12px;font-size:11px;font-weight:700;
-  color:#8f1f2c;text-decoration:none;backdrop-filter:blur(6px);box-shadow:0 2px 8px rgba(143,31,44,0.15);
-  white-space:nowrap;font-family:'Noto Sans KR',sans-serif;cursor:pointer;transition:background 0.15s;}
-.save-img-btn:hover{background:#fff;}
-.save-img-btn:disabled{opacity:0.6;cursor:default;}
+.archive-btn-inline,.save-img-btn-inline{padding:6px 16px;background:rgba(255,255,255,0.6);
+  border:1px solid rgba(60,55,48,0.2);border-radius:20px;font-size:11px;font-weight:700;
+  color:#8f1f2c;text-decoration:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;
+  transition:background 0.15s;white-space:nowrap;}
+.archive-btn-inline:hover,.save-img-btn-inline:hover{background:rgba(255,255,255,0.9);}
+.save-img-btn-inline:disabled{opacity:0.6;cursor:default;}
 @media(min-width:768px){
-  .archive-btn{top:18px;right:18px;font-size:12px;padding:7px 14px;}
-  .save-img-btn{top:60px;right:18px;font-size:12px;padding:7px 14px;}
+  .archive-btn-inline,.save-img-btn-inline{font-size:12px;padding:7px 18px;}
 }
 </style>
 </head>
 <body>
-<a href="https://chichiandpopo.github.io/stage_archive/" target="_blank" class="archive-btn">🎭 관극 아카이브</a>
-<button id="saveImgBtn" class="save-img-btn" onclick="saveArchiveImage()">📸 정산판 저장</button>
 
 <div class="hero">
   <div class="hero-inner">
@@ -433,6 +425,11 @@ body{font-family:'Noto Sans KR',sans-serif;
   <label style="padding:6px 16px;background:rgba(255,255,255,0.6);border:1px solid rgba(60,55,48,0.2);border-radius:20px;font-size:11px;font-weight:700;color:#8f1f2c;cursor:pointer;">
     📂 데이터 불러오기<input type="file" accept=".json" onchange="importData(event)" style="display:none;">
   </label>
+</div>
+
+<div style="max-width:720px;margin:6px auto 4px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;">
+  <a href="https://chichiandpopo.github.io/stage_archive/" target="_blank" class="archive-btn-inline">🎭 관극 아카이브</a>
+  <button id="saveImgBtn" class="save-img-btn-inline" onclick="saveArchiveImage()">📸 정산판 저장</button>
 </div>
 
 </div>
