@@ -334,6 +334,7 @@ body{font-family:'Noto Sans KR',sans-serif;
 #captureArea .seat{background:rgba(255,255,255,0.22);color:#a07b80;border:1px solid rgba(143,31,44,0.38);}
 #captureArea .seat-legend-item{color:#3a2a2c;font-weight:700;}
 #captureArea .seat-legend-dot{border:1px solid rgba(0,0,0,0.25);}
+.bd-cast.solo,.bd-cast.two.solo{grid-template-columns:minmax(0,1fr);width:33.33%;margin:0 auto;}
 </style>
 </head>
 <body>
@@ -765,20 +766,22 @@ const ROLE_KEYS = {
 const ALL_KEYS = [].concat(ROLE_KEYS.ok,ROLE_KEYS.han,ROLE_KEYS.go,ROLE_KEYS.wan,ROLE_KEYS.wada);
 
 function updateCounting(){
+  // 같은 역 2명 이상 선택 = 그 역은 '전체 선택'과 동일하게 카운팅, 1명만 선택하면 그 배우로 필터
+  const sel2={}; ROLE_ATTRS.forEach(a=>{sel2[a]=sel[a].length===1?sel[a]:[];});
   const cnt={}, totCnt={};
   ALL_KEYS.forEach(k=>{cnt[k]=0;totCnt[k]=0;});
   let total=0, totTotal=0;
-  const isAll=isAllEmpty(sel);
+  const isAll=isAllEmpty(sel2);
 
   document.querySelectorAll('.row[data-sid]').forEach(r=>{
     const sid=r.dataset.sid; if(!SHOW_INFO[sid])return;
     const info=SHOW_INFO[sid];
     if(!isAll){
-      if(sel.ok.length && !sel.ok.includes(info.ok))return;
-      if(sel.han.length && !sel.han.includes(info.han))return;
-      if(sel.go.length && !sel.go.includes(info.go))return;
-      if(sel.wan.length && !sel.wan.includes(info.wan))return;
-      if(sel.wada.length && !sel.wada.includes(info.wada))return;
+      if(sel2.ok.length && !sel2.ok.includes(info.ok))return;
+      if(sel2.han.length && !sel2.han.includes(info.han))return;
+      if(sel2.go.length && !sel2.go.includes(info.go))return;
+      if(sel2.wan.length && !sel2.wan.includes(info.wan))return;
+      if(sel2.wada.length && !sel2.wada.includes(info.wada))return;
     }
     totCnt[info.ok]=(totCnt[info.ok]||0)+1;
     totCnt[info.han]=(totCnt[info.han]||0)+1;
@@ -792,11 +795,11 @@ function updateCounting(){
     if((showSeats[sid]||[]).length===0||!SHOW_INFO[sid])return;
     const info=SHOW_INFO[sid];
     if(!isAll){
-      if(sel.ok.length && !sel.ok.includes(info.ok))return;
-      if(sel.han.length && !sel.han.includes(info.han))return;
-      if(sel.go.length && !sel.go.includes(info.go))return;
-      if(sel.wan.length && !sel.wan.includes(info.wan))return;
-      if(sel.wada.length && !sel.wada.includes(info.wada))return;
+      if(sel2.ok.length && !sel2.ok.includes(info.ok))return;
+      if(sel2.han.length && !sel2.han.includes(info.han))return;
+      if(sel2.go.length && !sel2.go.includes(info.go))return;
+      if(sel2.wan.length && !sel2.wan.includes(info.wan))return;
+      if(sel2.wada.length && !sel2.wada.includes(info.wada))return;
     }
     cnt[info.ok]=(cnt[info.ok]||0)+1;
     cnt[info.han]=(cnt[info.han]||0)+1;
@@ -806,9 +809,22 @@ function updateCounting(){
     total++;
   });
 
+  // 카드별 숫자: 자기 역 선택은 무시하고 다른 역 선택만 반영 (같은 역 여러 명 선택 시 모두 정상 표시)
+  const cCnt={}, cTot={};
+  ALL_KEYS.forEach(k=>{cCnt[k]=0;cTot[k]=0;});
+  const passOthers=(info,skip)=>ROLE_ATTRS.every(a=>a===skip||!sel2[a].length||sel2[a].includes(info[a]));
+  document.querySelectorAll('.row[data-sid]').forEach(r=>{
+    const sid=r.dataset.sid; const info=SHOW_INFO[sid]; if(!info)return;
+    const seated=(showSeats[sid]||[]).length>0;
+    ROLE_ATTRS.forEach(a=>{
+      if(!passOthers(info,a))return;
+      cTot[info[a]]=(cTot[info[a]]||0)+1;
+      if(seated) cCnt[info[a]]=(cCnt[info[a]]||0)+1;
+    });
+  });
   ALL_KEYS.forEach(k=>{
-    const c=document.getElementById('cnt-'+k); if(c) c.textContent=cnt[k]||0;
-    const t=document.getElementById('tot-'+k); if(t) t.textContent='/'+(totCnt[k]||0);
+    const c=document.getElementById('cnt-'+k); if(c) c.textContent=cCnt[k]||0;
+    const t=document.getElementById('tot-'+k); if(t) t.textContent='/'+(cTot[k]||0);
   });
   const totalEl=document.getElementById('cnt-total'); if(totalEl) totalEl.textContent=total;
   const totTotalEl=document.getElementById('tot-total'); if(totTotalEl) totTotalEl.textContent='/'+totTotal;
@@ -1116,15 +1132,20 @@ function applyFilter(){
 }
 
 function updateCountingDim(){
+  // 같은 역 1명 선택 → 그 배우만 표시(나머지 숨김) / 2명 이상 → 전부 정상 표시
   ROLE_ATTRS.forEach(attr=>{
     const activeSet=sel[attr];
+    const solo=activeSet.length===1;
+    let grid=null;
     ROLE_KEYS[attr].forEach(key=>{
       const numEl=document.getElementById('cnt-'+key);
       const card=numEl ? numEl.closest('.count-card') : null;
       if(!card) return;
-      if(activeSet.length && !activeSet.includes(key)) card.classList.add('dim');
-      else card.classList.remove('dim');
+      grid=card.parentElement;
+      card.classList.remove('dim');
+      card.style.display=(solo && !activeSet.includes(key))?'none':'';
     });
+    if(grid) grid.classList.toggle('solo',solo);
   });
 }
 
